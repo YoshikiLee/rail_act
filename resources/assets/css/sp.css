@@ -1,0 +1,155 @@
+@charset "utf-8";
+/* ================================================================
+[鉄道ACT研究会]
+ admin  : Saori Otsuka
+ Author: Graphics Drive Inc.
+ Author URI: http://www.graphics-drive.com/
+ update : 2018/02/05
+ 
+ Smart phone用css
+ break point max-width: 480px, min-with: 320px
+------------------------------------------------------------------- 
+header
+contants
+footer
+
+ログイン
+ダウンロード
+
+================================================================ */
+
+body { word-wrap:break-word; }/* スマホでは英文字の改行をする */
+
+br { display: none; }/* スマホではtextの改行をしない */
+
+
+
+.pc{ display: none; } /* スマホでは表示させない */
+.sp{ display: block;} 　/* スマホで表示さる */
+
+
+/* 上メニューが被る分下げる */
+
+#header .logo {
+	width:100%;
+}
+
+
+#header .logo img{
+	width:73%;
+	padding-left:10px;
+}
+
+
+#header .logout{
+	float:right;
+	font-size: 1.2em;
+	padding:15px 5px;
+}
+
+
+#pageTop{
+	margin-left:65%;
+}
+
+
+#footer p span{
+	width:95%;
+}
+
+address{
+	width:95%;
+}
+
+#contents{
+	width: 95%; /* 左右に余白なし */
+	clear: both;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+/* 見出し*/
+/* h3見出し */
+h3{ width:88%; font-size: 1.6em; line-height:1.4em; padding: 1.5% 1% 1% 10.5%; }
+
+/* h4見出し */
+h4{ width:90%; font-size: 1.6em; line-height:1.4em; padding: 1.5% 1% 1% 8.5%;}
+
+
+
+#mainImg img{
+	width:95%;
+}
+
+.table1{ width:100%; }
+
+/* ------------------------------------------------------------
+		 table
+------------------------------------------------------------ */
+.table1 th, .table1 td{ width: 96.5%; display: block; text-align:center; word-break: break-all;}
+
+/*------------------------------------------------------------
+		ログイン画面
+------------------------------------------------------------*/
+
+input[type="text"],
+input[type="password"]{
+    width: 94%;
+}
+    
+input[type="submit"] {
+    width: 80%;
+}
+    
+
+
+
+
+
+/*------------------------------------------------------------
+		ダウンロードページ
+------------------------------------------------------------*/
+#d_box{
+	padding:3%;
+	width:94%;
+}
+
+
+#d_box .inner .pdf{
+	width:30%;
+	float:none;
+}
+
+
+#d_box .inner .pdf img{
+	display:block;
+	margin:auto;
+	margin:10px;
+}
+
+#d_box .inner .text_box{
+	width:100%;
+	float:none;
+	padding:0;
+}
+
+
+#d_box .inner .text_box p{
+	width:100%;
+}
+
+#d_box .inner .d_buttom{
+	display:block;
+	width:70%;
+	margin:auto;
+	float:none;
+	height:auto;
+}
+
+#d_box .inner .d_buttom img{
+	margin:auto;
+	margin-top:10px;
+}
+
+

@@ -1,0 +1,24 @@
+{
+  "name": "rail_act",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "datatables": "^1.10.16",
+    "datatables.net-plugins": "datatables-plugins#^1.10.16",
+    "Flot": "flot#^0.8.3",
+    "font-awesome": "^4.7.0",
+    "holderjs": "^2.9.4",
+    "metisMenu": "^2.7.2",
+    "morris.js": "morrisjs#^0.5.1",
+    "datatables-responsive": "^2.2.1",
+    "bootstrap-social": "^5.1.1",
+    "flot.tooltip": "^0.9.0",
+    "vue": "^2.5.13"
+  }
+}

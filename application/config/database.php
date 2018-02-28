@@ -70,10 +70,10 @@ return array(
 		'mysql' => array(
 			'driver'   => 'mysql',
 			'host'     => '127.0.0.1',
-			'database' => 'database',
+			'database' => 'rail_act',
 			'username' => 'root',
-			'password' => '',
-			'charset'  => 'utf8',
+			'password' => 'password',
+			'charset'  => 'utf8mb4',
 			'prefix'   => '',
 		),
 

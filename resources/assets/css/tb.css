@@ -1,0 +1,65 @@
+@charset "utf-8";
+/* ================================================================
+[鉄道ACT研究会]
+ admin  : Saori Otsuka
+ Author: Graphics Drive Inc.
+ Author URI: http://www.graphics-drive.com/
+ update : 2018/02/05
+ 
+ Tablet用css
+ break point max-width: 980px, min-with: 480px
+================================================================ */
+
+ #gnav-box{ display: none; }
+
+
+
+#header h1{
+	width:95%;
+	padding:0px 0px 5px 0px;
+}
+
+
+
+#header .logo img{
+	width:65%;
+	padding-left:10px;
+}
+
+
+#pageTop{
+	margin-left:70%;
+}
+
+
+#footer p span{
+	width:95%;
+}
+
+address{
+	width:95%;
+}
+
+#contents{
+	width: 95%;
+	clear: both;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.pc{ display: block; }/* pc で表示させる*/
+.sp{ display: none;}/* sc で表示させない*/
+
+
+/* h3見出し */
+h3{ width:91%; font-size: 1.8em; line-height:1.6em; padding: 1.5% 1% 1% 6.5%; }
+
+/* h4見出し */
+h4{ width:94%; font-size: 1.8em; line-height:1.6em; padding: 1.5% 1% 1% 4.5%;}
+
+#mainImg img{
+	width:95%;
+}
+
+
+.table1{ width:80%; }

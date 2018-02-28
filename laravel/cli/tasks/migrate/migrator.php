@@ -108,9 +108,9 @@ class Migrator extends Task {
 		if (count($arguments) > 0)
 		{
 			$bundles = $arguments;
-			
+
 			if ( ! is_array($bundles)) $bundles = array($bundles);
-			
+
 			$migrations = array_filter($migrations, function($migration) use ($bundles)
 			{
 				return in_array($migration['bundle'], $bundles);
@@ -179,7 +179,7 @@ class Migrator extends Task {
 	 */
 	public function install()
 	{
-		Schema::table('laravel_migrations', function($table)
+		Schema::table('migrations', function($table)
 		{
 			$table->create();
 

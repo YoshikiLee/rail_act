@@ -78,7 +78,7 @@ class Database {
 	 */
 	protected function table()
 	{
-		return DB::connection(Request::server('cli.db'))->table('laravel_migrations');
+		return DB::connection(Request::server('cli.db'))->table('migrations');
 	}
 
 }

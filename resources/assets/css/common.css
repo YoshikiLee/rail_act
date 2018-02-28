@@ -1,0 +1,439 @@
+@charset "utf-8";
+/* ================================================================
+[鉄道ACT研究会]
+ admin  : Saori Otsuka
+ Author: Graphics Drive Inc.
+ Author URI: http://www.graphics-drive.com/
+ update : 2018/02/05
+ 
+ 共通CSS 全てに適用
+------------------------------------------------------------------- 
+
+body 
+float
+text
+color
+矢印
+link
+header
+Page Top トップへ戻る
+Footer
+clearfix
+================================================================ */
+
+/* body Resets 1em to 10px */
+body{ font-family: "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro", "メイリオ", Meiryo, verdana, Osaka, "ＭＳ Ｐゴシック", "MS PGothic", sans-serif;
+font-size: 62.5%; margin: 0px; padding: 0px;}
+
+img{ max-width: 100%; height: auto; border: 0; vertical-align: top; display: block;}
+
+a img { border: none; }
+
+/* 画像css3:フェードインアニメーション:IE10以下未対応 */
+a img {
+	-webkit-transition: 0.3s ease-in-out;
+	   -moz-transition: 0.3s ease-in-out;
+	     -o-transition: 0.3s ease-in-out;
+	        transition: 0.3s ease-in-out;
+}
+
+a:hover img{ filter: alpha(opacity=80); -moz-opacity:0.8; opacity:0.7; color: #FFF; }
+
+/* 768以上で電話をクリックできないようにする */
+@media screen and (min-width: 768px) {
+	a[href^="tel:"] { pointer-events: none; }
+}
+
+
+/* float
+------------------------------------------------------------- */
+.right{ float: right; }
+.left{ float: left; }
+
+
+/* ------------------------------------------------------------
+	　	text
+------------------------------------------------------------ */
+p{ font-size: 1.4em; letter-spacing: 0.05em; line-height: 1.6em; color: #333; }
+strong{ color:#ED6D00; }
+
+
+/* フォントの大きさ */
+.tex10 { font-size: 1em !important; }
+.tex14 { font-size: 1.4em !important; }
+.tex16 { font-size: 1.6em !important; }
+.tex20 { font-size: 2em !important; }
+
+
+/* 注釈 */
+.disc{ font-size: 11px; color: #666; line-height: 14px; text-align: left; margin-top: 5px; }
+.psmall{ font-size: 12px; line-height: 13px; letter-spacing: 0em; padding-top: 10px; }
+.pmid{ font-size: 14px; line-height: 16px; letter-spacing: 0em; padding-top: 10px; }
+
+
+
+/* 行間を空ける */
+.mt1{ margin-top: 1em;}
+.mt3{ margin-top: 3em;}
+
+.mb1{ margin-bottom: 1em; }
+.mb2{ margin-bottom: 2em; }
+.mb3{ margin-bottom: 3em; }
+.mb4{ margin-bottom: 4em; }
+.mb5{ margin-bottom: 5em; }
+.mb7{ margin-bottom: 7em; }
+.mb10{ margin-bottom: 10em; }
+.mb20{ margin-bottom: 20em; }
+
+/* iconの余白 */
+.mp05{ padding-right: 0.5em; }
+
+/* テキストの位置 */
+.texLeft { text-align: left !important; }
+.texCenter { text-align: center !important; }
+.texRight { text-align: right !important; }
+
+
+/* ------------------------------------------------------------
+	　	color
+------------------------------------------------------------ */	
+
+.brown{ color: #330E00; }
+
+.red{ color: #900;}
+
+.redb{
+	color: #FF0000;
+	font-weight: bold;
+}
+
+.redb02{
+	color: #AA011C;
+	font-weight: bold;
+}
+
+/* ------------------------------------------------------------
+	　	汎用ライン
+------------------------------------------------------------ */
+
+/* Line */
+hr{ border-top: 1px solid #D1A576; width:100%; max-width:980px;}/* ベージュ */
+hr.dot{ border-top: 1px dotted #eee; padding-top: 30px; padding-bottom: 30px;  width:100%; max-width:980px;}
+
+.line{
+	border-bottom: #CCC solid 1px;
+	height:1px;
+	width:100%;
+	margin:0px auto;
+}
+
+/* 古いIEのletter-spacingバグ */
+
+br{
+letter-spacing: 0;
+}
+
+
+/* ------------------------------------------------------------
+	　	凡用リスト
+------------------------------------------------------------ */
+ol{
+	list-style-position:outside;
+	list-style: decimal;
+	margin:20px 0px 10px 30px;
+	padding:0px;
+	color: #FF9933;
+}
+
+
+ol li{
+	font-size: 1.5em;
+	line-height: 1.6em;
+	color: #333;
+	margin-bottom:15px;
+}
+
+ol li strong{
+	color: #FF9933;
+}
+
+
+
+
+/*------------------------------------------------------------
+	　	table
+------------------------------------------------------------*/
+.table1{ width:60%; margin:0 auto;  background:#FFF;}
+
+.table1 th{ font-weight: normal; color:#333; font-weight:bold; text-align:center;}
+
+.table1 .td1{ background-color: #DDD; }
+
+
+
+/* ------------------------------------------------------------
+	　	矢印
+------------------------------------------------------------ */
+.arrow{
+	position: relative;
+	display: inline-block;
+	color: #000;
+	vertical-align: middle;
+	text-decoration: none;
+	padding-top: 0;
+	padding-right: 0;
+	padding-bottom: 0;
+	padding-left: 15px;
+	clear:both;
+}
+.arrow::before,.arrow::after{
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	margin: auto;
+	content: "";
+	vertical-align: middle;
+}
+
+/* オプション設定 */
+.arrow01:before{
+	width: 6px;
+	height: 6px;
+	border-top: 4px solid #008738;/* green */
+	border-right: 4px solid #008738;
+	-webkit-transform: rotate(225deg);
+	transform: rotate(225deg);
+}
+
+.arrow02:after{
+	width: 6px;
+	height: 6px;
+	border-top: 4px solid #fff;
+	border-right: 4px solid #fff;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+.arrow03:before{
+	width: 3px;
+	height: 3px;
+	border-top: 2px solid #FFF;
+	border-right: 2px solid #FFF;
+	-webkit-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
+
+
+/* ------------------------------------------------------------
+		link
+------------------------------------------------------------ */
+
+a:link, 
+a:visited {
+	color: #00B7A0;
+	text-decoration: underline;
+	font-weight:bold;
+}
+a:hover {
+	color: #AAA;
+}
+
+
+
+/* ------------------------------------------------------------
+		header
+------------------------------------------------------------ */
+
+
+#header{
+	width: 100%;
+	height: auto;
+	margin:0 auto;
+	padding:10px 0px 0px 0px;
+}
+
+#header h1{
+	font-weight: normal;
+	font-size: 1.1em;
+	display: block;
+	max-width: 980px;
+	width:100%;
+	margin-top: 10px;
+	text-align: left;
+	margin:0px auto;
+	padding:0px 0px 5px 0px;
+	color: #666;
+	line-height: 1.3em;
+}
+
+
+
+#header .logo{
+	display: block;
+	max-width: 980px;
+	margin:0px auto;
+	padding:0px;
+	text-align: left;
+}
+
+#header .logo img{
+	width:55%;
+}
+
+#header .logout{
+	float:right;
+	width: auto;
+	color: #00B7A0;
+	font-size: 1.4em;
+	letter-spacing: 0.05em;
+	font-weight:bold;
+	text-decoration:underline;
+	padding:30px 20px 10px 20px;
+}
+
+/*------------------------------------------------------------
+		contents
+------------------------------------------------------------*/
+#contents{
+	margin-top:30px;
+	padding-bottom: 10px;
+	clear: both;
+	width: 980px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+
+.pc{ display: blok; } /* スマホでは表示させない */
+.sp{ display: none;} 　/* スマホで表示さる */
+
+
+/* 画像の縦横比を縮小しても同じにする */
+img{
+	max-width: 100%;
+	height: auto;
+	border: 0;
+	vertical-align: top;
+	display: block;
+}
+
+
+/*------------------------------------------------------------
+		Page Top トップへ戻る
+------------------------------------------------------------*/
+#pageTop{
+	width:120px;
+	margin-left:83%;
+	padding:0px 0px;
+}
+
+#pageTop a{
+	width: 120px;
+    height: 25px;
+    display: block;
+    background: url(../images/gototop.gif) no-repeat left top;
+}
+
+#pageTop a:hover{ background-position: right top; }
+
+/*------------------------------------------------------------
+		Footer
+------------------------------------------------------------*/
+
+#footer{
+	width: 100%;
+	margin-right: auto;
+	margin-left: auto;
+	text-align:left;
+}
+
+#footer p{
+	width:100%;
+	margin:10px auto;
+	color: #333;
+	font-size:1.3em;
+	line-height:1.4em;
+	background: url(../images/footer_bg.gif) left repeat;
+}
+
+#footer p span{
+	display:block;
+	max-width:980px;
+	width:100%;
+	margin:0px auto;
+	padding:10px 0px;
+}
+
+address{
+	font-size: 11px;
+	line-height: 30px;
+	max-width: 980px;
+	width:100%;
+	text-align: left;
+	margin: 8px auto;
+	color: #666;
+	font-style:normal;
+}
+
+
+/* 980px以上では非表示 */
+@media(min-width: 480px){ .footer-btn{visibility: hidden;} }
+
+/* sp・tb用固定ボタン */
+
+.footer-btn{
+	position: fixed !important;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	width: 100%;
+	z-index: 3;
+	background:#AA011C;
+}
+
+.footer-btn ul li{
+	display: block;
+	float: left;
+	width: 49%;
+	box-sizing: border-box;
+	padding: 0;
+	border-right-width: 1px;
+	border-right-style: solid;
+	border-right-color: #FFF;
+	margin-top: 0px;
+}
+
+ /* 右だけ白線を削除  */
+.footer-btn ul li:last-child{ border-right-style: none; }
+
+.footer-btn ul li img{
+	margin-right: auto;
+	margin-left: auto;
+	max-height: auto;
+	max-width: 80%;
+}
+
+
+/*------------------------------------------------------------
+		clearfix
+------------------------------------------------------------*/
+
+/*clearfix*/
+.clearfix:after{  
+visibility:hidden;
+height:0;
+display: block;
+font-size: 0;  
+content: " ";  
+clear: both;  
+
+}  
+* html .clearfix             { zoom: 1; } /* IE6 */  
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+
+/* 古いIEのletter-spacingバグ */
+
+br{
+letter-spacing: 0;
+}
