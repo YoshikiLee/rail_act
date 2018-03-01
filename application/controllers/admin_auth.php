@@ -1,6 +1,6 @@
 <?php
 
-class Auth_Controller extends Base_Controller {
+class Admin_Auth_Controller extends Base_Controller {
 
 	public $restful = true;
 
@@ -18,7 +18,7 @@ class Auth_Controller extends Base_Controller {
 	 */
 	public function get_index() {
 		$input = array('username' => '');
-		return View::make('auth.login')->with('input', $input);
+		return View::make('auth.admin_login')->with('input', $input);
 	}
 
 	/**
@@ -36,16 +36,16 @@ class Auth_Controller extends Base_Controller {
 		$validation = Validator::make(Input::all(), $rules);
 		if ($validation->fails())
 		{
-				return View::make('auth.login')->with('input', $input)->with_errors($validation);
+				return View::make('auth.admin_login')->with('input', $input)->with_errors($validation);
 		}
-		$credentials = array('username' => Input::get('username'), 'password' => Input::get('password'), 'isadmin' => false);
+		$credentials = array('username' => Input::get('username'), 'password' => Input::get('password'), 'isadmin' => true);
 		if (Auth::attempt($credentials))
 		{
-			return Redirect::to('home');
+			return Redirect::to('admin/home');
 		} else {
 			$this->errors = new Messages;
 			$this->errors->add('username', Lang::line('auth.failed')->get());
-			return View::make('auth.login')->with('input', $input)->with_errors($this->errors);
+			return View::make('auth.admin_login')->with('input', $input)->with_errors($this->errors);
 		}
 	}
 
@@ -74,6 +74,6 @@ class Auth_Controller extends Base_Controller {
 	 */
 	public function logout() {
 		Auth::logout();
-		return View::make('auth.logout');
+		return View::make('auth.admin_logout');
 	}
 }

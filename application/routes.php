@@ -120,3 +120,20 @@ Route::get('login', 'auth@index');
 Route::post('login', 'auth@login');
 Route::get('logout', 'auth@logout');
 Route::post('logout', 'auth@logout');
+
+
+Route::filter('admin.auth', function()
+{
+	if (Auth::guest()) return Redirect::to('admin/login');
+});
+
+Route::group(array('before' => 'admin.auth'), function()
+{
+	Route::get('admin', 'admin_home@index');
+	Route::get('admin/home', 'admin_home@index');
+});
+
+Route::get('admin/login', 'admin_auth@index');
+Route::post('admin/login', 'admin_auth@login');
+Route::get('admin/logout', 'admin_auth@logout');
+Route::post('admin/logout', 'admin_auth@logout');

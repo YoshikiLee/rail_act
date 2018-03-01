@@ -15,6 +15,7 @@ class Create_Users_Table {
 			$table->increments('id');
 			$table->string('username')->unique();
 			$table->string('password');
+			$table->boolean('isadmin');
 			$table->timestamps();
 		});
 	}
