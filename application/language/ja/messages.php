@@ -23,6 +23,8 @@ return array(
     'login_password' => 'パスワード',
     'login_button' => 'ログイン',
 
+    'login_title' => '→ ログイン',
+
     'logout_title' => '→ ログアウト',
     'logout_finish1' => 'ログアウトしました。',
     'logout_finish2' => ' ご利用ありがとうございました。',

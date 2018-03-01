@@ -7,14 +7,14 @@
   <title>{{__('messages.title')}}</title>
   <!-- Web Icon -->
   <!-- <link rel="apple-touch-icon" href="images/webclip.png" /> -->
-  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="favicon.ico">
-  <link rel="icon" type="image/vnd.microsoft.icon" href="favicon.ico">
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
-  <link rel="icon" type="image/png" sizes="96x96" href="favicon-196x196.png">
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+  <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="{{asset('favicon.ico')}}">
+  <link rel="icon" type="image/vnd.microsoft.icon" href="{{asset('favicon.ico')}}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{asset('favicon-96x96.png')}}">
+  <link rel="icon" type="image/png" sizes="96x96" href="{{asset('favicon-196x196.png')}}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{{asset('favicon-32x32.png')}}">
   <!-- <link rel="manifest" href="/manifest.json"> -->
   <meta name="msapplication-TileColor" content="#2d88ef">
-  <meta name="msapplication-TileImage" content="mstile-144x144.png">
+  <meta name="msapplication-TileImage" content="{{asset('mstile-144x144.png')}}">
   <!-- SEO -->
   <meta property="og:title" content="{{__('messages.og_title')}}" />
   <meta property="og:type" content="{{__('messages.og_type')}}" />
@@ -22,12 +22,43 @@
   <meta property="og:image" content="{{__('messages.og_image')}}" />
   <meta property="og:site_name" content="{{__('messages.og_site_name')}}" />
   <meta property="og:description" content="{{__('messages.og_description')}}" />
-  {{ HTML::style('css/front.min.css') }}
+  <link href="{{ asset('css/front.min.css') }}" rel="stylesheet">
   @yield('scripts')
 </head>
 <body>
+  <header id="header">
+    <h1>{{__('messages.header_title')}}</h1>
+    <div class="line"></div>
+    <div class="logo">
+      @if (Auth::check())
+      <div class="logout"><a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{__('messages.logout_title')}}</a></div>
+      <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
+        {{Form::token()}}
+      </form>
+      @endif
+      <a href="{{__('messages.logo_url')}}">
+        <img src="{{asset('/images/logo.png')}}" width="550" height="80" alt="{{__('messages.logo_alt')}}"/>
+      </a>
+    </div>
+  </header><!-- /header -->
+
+  <div id="mainImg">
+    <h2>
+      <img src="{{asset('/images/main_title.jpg')}}"  alt="{{__('messages.title')}}" class="pc"/>
+      <img src="{{asset('/images/main_title_sp.jpg')}}"  alt="{{__('messages.title')}}" class="sp"/>
+    </h2>
+  </div>
+
+  @yield('content')
+
+  <!-- InstanceEndEditable -->
+  <footer id="footer" class="clearfix"><!-- /footer-btn/sp -->
+    <div id="pageTop"><a href="#header"><img src="{{asset('/images/gototop.gif')}}" width="1" height="1"></a></div>
+    <div class="line"></div>
+    <address>{{__('messages.footer_copyright')}}</address>
+  </footer><!-- /footer -->
   <!-- Scripts -->
-  {{ HTML::script('js/front.js') }}
+  <script src="{{ asset('js/front.min.js') }}"></script>
   @yield('javascript')
 </body>
 </html>

@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'index' => 'index.php',
+	'index' => '',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -176,6 +176,7 @@ return array(
 		'Lang'       	=> 'Laravel\\Lang',
 		'Log'        	=> 'Laravel\\Log',
 		'Memcached'  	=> 'Laravel\\Memcached',
+		'Messages'    => 'Laravel\\Messages',
 		'Paginator'  	=> 'Laravel\\Paginator',
 		'Profiler'  	=> 'Laravel\\Profiling\\Profiler',
 		'URL'        	=> 'Laravel\\URL',

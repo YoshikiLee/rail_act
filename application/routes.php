@@ -110,12 +110,13 @@ Route::filter('auth', function()
 	if (Auth::guest()) return Redirect::to('login');
 });
 
-Route::get('login', 'auth@index');
-
-Route::group(array('before' => 'auth|csrf'), function()
+Route::group(array('before' => 'auth'), function()
 {
-	Route::get('/', function()
-	{
-		return View::make('home.index');
-	});
+	Route::get('/', 'home@index');
+	Route::get('home', 'home@index');
 });
+
+Route::get('login', 'auth@index');
+Route::post('login', 'auth@login');
+Route::get('logout', 'auth@logout');
+Route::post('logout', 'auth@logout');

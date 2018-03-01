@@ -2,6 +2,7 @@
 
 class Home_Controller extends Base_Controller {
 
+	public $restful = true;
 	/*
 	|--------------------------------------------------------------------------
 	| The Default Controller
@@ -30,9 +31,14 @@ class Home_Controller extends Base_Controller {
 	|
 	*/
 
-	public function action_index()
+	public function get_index()
 	{
-		return View::make('home.index');
+		$contents = Content::all();
+		foreach ($contents as $content) {
+				// $file->path=Storage::url($file->name);
+				$content->path='storage/'.$content->name;
+		}
+		return View::make('home.index')->with('contents', $contents);
 	}
 
 }
