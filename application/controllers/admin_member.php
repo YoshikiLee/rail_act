@@ -13,4 +13,20 @@ class Admin_Member_Controller extends Base_Controller {
 							->with('minid', $minid);
 	}
 
+	public function post_changepassword()
+	{
+		$rules = array(
+			'password' => 'required|max:32'
+		);
+		$validation = Validator::make(Input::all(), $rules);
+		if ($validation->fails())
+		{
+			return Response::json(array('success' => false, 'message' => $validation->errors->first('password')));
+		}
+		$user = User::Find(Input::get('userid'))->first();
+		$user->password = Hash::make(Input::get('password'));
+		$user->save();
+		return Response::json(array('success' => true));
+	}
+
 }

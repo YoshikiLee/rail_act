@@ -40,19 +40,17 @@
                                                   <th>{{__('messages.member_password')}}</th>
                                                   <td>
                                                       <div id="showChange">
-                                                        <button id="showChangeBotton" type="button" class="btn btn-danger btn-sm">{{__('messages.member_password_change')}}</button>
+                                                        <button id="showChangeBotton" type="button" class="btn btn-danger">{{__('messages.member_password_change')}}</button>
                                                       </div>
                                                       <div id="showChange" class="input-group" style="display: none;">
-                                                        <input type="password" class="form-control" placeholder="{{__('messages.member_password_input')}}" maxlength=32 autocomplete=OFF>
+                                                        <input type="password" name="password" class="form-control" placeholder="{{__('messages.member_password_input')}}" maxlength=32 autocomplete=OFF>
+                                                        <input type="hidden" name="userid" value="{{ $user->id }}">
                                                         <span class="input-group-btn">
                                                           <button id="confirmChangeBotton" class="btn btn-danger btn-secondary" type="button">{{__('messages.member_password_change')}}</button>
+                                                          <button id="closeChangeBotton" class="btn btn-primary btn-secondary" type="button">{{__('messages.close')}}</button>
                                                         </span>
                                                       </div>
                                                   </td>
-                                              </tr>
-                                              <tr>
-                                                  <th>{{__('messages.member_lastupdated')}}</th>
-                                                  <td>{{ $user->updated_at }}</td>
                                               </tr>
                                           </tbody>
                                       </table>
@@ -79,6 +77,12 @@
 $(document).ready(function() {
   $('#showChangeBotton').click(function(e) {
     e.preventDefault();
+    $("input[name$='password']").val('');
+    $('div#showChange').toggle('500');
+  });
+  $('#closeChangeBotton').click(function(e) {
+    e.preventDefault();
+    $("input[name$='password']").val('');
     $('div#showChange').toggle('500');
   });
   $('#confirmChangeBotton').click(function(e) {
@@ -94,12 +98,37 @@ $(document).ready(function() {
       btnOKClass: 'btn-danger',
       callback: function(result) {
         if(result){
+          var userid = $("input[name$='userid']").val();
+          var password = $("input[name$='password']").val();
           App.ajax({
-              url: '{{ url('logout') }}',
+              url: '{{ url('admin/member/changepassword') }}',
               data: {
+                'userid':userid,
+                'password':password
               },
-              sk_success: function (data, textStatus, jqXHR) {
+              app_success: function (data, textStatus, jqXHR) {
+                if(data['success']){
                   $('div#showChange').toggle('500');
+                  $("input[name$='password']").val('');
+                  BootstrapDialog.show({
+                      type: BootstrapDialog.TYPE_DEFAULT,
+                      title: '{{__('messages.success')}}',
+                      message: '{{__('messages.member_password_change_finish')}}'
+                  });
+                } else {
+                  BootstrapDialog.show({
+                      type: BootstrapDialog.TYPE_DANGER,
+                      title: '{{__('messages.error')}}',
+                      message: data['message'],
+                      buttons: [{
+                          label: '{{__('messages.close')}}',
+                          cssClass: 'btn-default',
+                          action: function(dialogItself){
+                              dialogItself.close();
+                          }
+                      }]
+                  });
+                }
               }
           });
         }

@@ -142,6 +142,9 @@ return array(
 	| この配列の値に置き換えようと試みます。絶妙ですね。あなたも気に入ってくれるでしょう。
 	*/
 
-	'attributes' => array(),
+	'attributes' => array(
+		"username" => "ユーザ名",
+		"password" => "パスワード",
+	),
 
 );
