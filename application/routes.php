@@ -107,7 +107,7 @@ Route::filter('csrf', function()
 
 Route::filter('auth', function()
 {
-	if (Auth::guest() || !(Auth::user()->isadmin == false)) {
+	if (Auth::guest() || Auth::user()->isadmin) {
 		return Redirect::to('login');
 	}
 });
@@ -126,7 +126,7 @@ Route::post('logout', 'auth@logout');
 
 Route::filter('admin.auth', function()
 {
-	if (Auth::guest() || !(Auth::user()->isadmin == true)) {
+	if (Auth::guest() || !Auth::user()->isadmin) {
 		return Redirect::to('admin/login');
 	}
 });

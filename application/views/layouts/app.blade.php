@@ -30,7 +30,7 @@
     <h1>{{__('messages.header_title')}}</h1>
     <div class="line"></div>
     <div class="logo">
-      @if (Auth::check() && Auth::user()->isadmin == false)
+      @if (Auth::check() && !Auth::user()->isadmin)
       <div class="logout"><a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{__('messages.logout_title')}}</a></div>
       <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
         {{Form::token()}}

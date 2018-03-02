@@ -6,7 +6,11 @@ class Admin_Member_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-		return View::make('home.admin_member');
+		$users = User::all();
+		$minid = min($users)->id;
+		return View::make('home.admin_member')
+							->with('users', $users)
+							->with('minid', $minid);
 	}
 
 }

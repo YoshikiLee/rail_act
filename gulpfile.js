@@ -41,6 +41,7 @@ gulp.task('kanri-minify-ccs', function() {
       'resources/vendor/bootstrap/css/bootstrap.css',
       'resources/vendor/metisMenu/metisMenu.css',
       'resources/vendor/font-awesome/css/font-awesome.css',
+      'resources/vendor/bootstrap3-dialog/css/bootstrap-dialog.css',
       'resources/assets/css/app.css'
     ])
     .pipe(minifyCSS())
@@ -54,6 +55,7 @@ gulp.task('kanri-minify-js', function() {
       'resources/vendor/jquery/jquery.js',
       'resources/vendor/bootstrap/js/bootstrap.js',
       'resources/vendor/metisMenu/metisMenu.js',
+      'resources/vendor/bootstrap3-dialog/js/bootstrap-dialog.js',
       'resources/assets/js/app.js'
     ])
     .pipe(concat('kanri.min.js'))
@@ -94,4 +96,6 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('public/fonts'))
     gulp.src(['resources/vendor/bootstrap/fonts/*'])
         .pipe(gulp.dest('public/fonts'))
+    gulp.src(['bower_components/bootstrap3-dialog/dist/**/*'])
+        .pipe(gulp.dest('resources/vendor/bootstrap3-dialog'))
 });

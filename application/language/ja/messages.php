@@ -30,8 +30,22 @@ return array(
 
     'dashboard_title' => 'ダッシュボード',
     'member_title' => 'パスワード変更',
+    'member_list_title' => 'ユーザ一覧',
+    'member_name' => 'ユーザ名',
+    'member_type' => '区分',
+    'member_password' => 'パスワード',
+    'member_password_input' => 'パスワードを入力してください',
+    'member_password_change' => '変更',
+    'member_password_change_confirm_title' => 'パスワード変更確認',
+    'member_password_change_confirm' => 'パスワードを変更してよろしいですか？',
+    'member_password_change_cancel' => 'キャンセル',
+    'member_password_change_process' => '変更',
+    'member_lastupdated' => '最終更新日時',
     'content_title' => 'コンテンツアップロード',
     'history_title' => 'ダウンロード履歴',
+
+    'member' => '会員',
+    'administrator' => '管理者',
 
     'logout' => 'ログアウト',
     'logout_title' => '→ ログアウト',
