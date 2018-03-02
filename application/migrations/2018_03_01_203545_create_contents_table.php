@@ -14,7 +14,8 @@ class Create_Contents_Table {
 			$table->create();
 			$table->increments('id');
 			$table->string('name')->unique();
-			$table->integer('order')->unique();
+			$table->integer('order');
+			$table->integer('type');
 			$table->string('extension');
 			$table->string('description');
 			$table->timestamps();

@@ -3,9 +3,15 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var minifyCSS = require('gulp-minify-css');
 var autoprefixer = require('gulp-autoprefixer');
+var less = require('gulp-less');
+var plumber = require('gulp-plumber');
+var rename = require('gulp-rename');
 
 gulp.task('front-minify-ccs', function() {
-  return gulp.src('resources/assets/css/import.css')
+  return gulp.src([
+      'resources/assets/css/import.css',
+      'resources/vendor/font-awesome/css/font-awesome.css'
+    ])
     .pipe(minifyCSS())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
     .pipe(concat('front.min.css'))
@@ -19,6 +25,38 @@ gulp.task('front-minify-js', function() {
       'resources/assets/js/modernizr.js'
     ])
     .pipe(concat('front.min.js'))
+    .pipe(uglify())
+    .pipe(gulp.dest('public/js'))
+});
+
+gulp.task('kanri-less', function() {
+    return gulp.src('resources/assets/less/app.less')
+        .pipe(plumber())
+        .pipe(less())
+        .pipe(gulp.dest('resources/assets/css/'))
+});
+
+gulp.task('kanri-minify-ccs', function() {
+  return gulp.src([
+      'resources/vendor/bootstrap/css/bootstrap.css',
+      'resources/vendor/metisMenu/metisMenu.css',
+      'resources/vendor/font-awesome/css/font-awesome.css',
+      'resources/assets/css/app.css'
+    ])
+    .pipe(minifyCSS())
+    .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
+    .pipe(concat('kanri.min.css'))
+    .pipe(gulp.dest('public/css'))
+});
+
+gulp.task('kanri-minify-js', function() {
+  return gulp.src([
+      'resources/vendor/jquery/jquery.js',
+      'resources/vendor/bootstrap/js/bootstrap.js',
+      'resources/vendor/metisMenu/metisMenu.js',
+      'resources/assets/js/app.js'
+    ])
+    .pipe(concat('kanri.min.js'))
     .pipe(uglify())
     .pipe(gulp.dest('public/js'))
 });
@@ -52,4 +90,8 @@ gulp.task('copy', function() {
         .pipe(gulp.dest('resources/vendor/vue'))
     gulp.src(['resources/assets/images/*'])
         .pipe(gulp.dest('public/images'))
+    gulp.src(['resources/vendor/font-awesome/fonts/*'])
+        .pipe(gulp.dest('public/fonts'))
+    gulp.src(['resources/vendor/bootstrap/fonts/*'])
+        .pipe(gulp.dest('public/fonts'))
 });

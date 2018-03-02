@@ -107,7 +107,9 @@ Route::filter('csrf', function()
 
 Route::filter('auth', function()
 {
-	if (Auth::guest()) return Redirect::to('login');
+	if (Auth::guest() || !(Auth::user()->isadmin == false)) {
+		return Redirect::to('login');
+	}
 });
 
 Route::group(array('before' => 'auth'), function()
@@ -124,13 +126,19 @@ Route::post('logout', 'auth@logout');
 
 Route::filter('admin.auth', function()
 {
-	if (Auth::guest()) return Redirect::to('admin/login');
+	if (Auth::guest() || !(Auth::user()->isadmin == true)) {
+		return Redirect::to('admin/login');
+	}
 });
 
 Route::group(array('before' => 'admin.auth'), function()
 {
 	Route::get('admin', 'admin_home@index');
 	Route::get('admin/home', 'admin_home@index');
+	Route::get('admin/kanri', 'admin_kanri@index');
+	Route::get('admin/member', 'admin_member@index');
+	Route::get('admin/content', 'admin_content@index');
+	Route::get('admin/history', 'admin_history@index');
 });
 
 Route::get('admin/login', 'admin_auth@index');

@@ -25,6 +25,15 @@ return array(
 
     'login_title' => '→ ログイン',
 
+    'kanri_link' => '→ 管理',
+    'kanri_title' => 'メンバー、コンテンツ管理',
+
+    'dashboard_title' => 'ダッシュボード',
+    'member_title' => 'パスワード変更',
+    'content_title' => 'コンテンツアップロード',
+    'history_title' => 'ダウンロード履歴',
+
+    'logout' => 'ログアウト',
     'logout_title' => '→ ログアウト',
     'logout_finish1' => 'ログアウトしました。',
     'logout_finish2' => ' ご利用ありがとうございました。',

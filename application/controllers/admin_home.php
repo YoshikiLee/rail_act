@@ -33,7 +33,7 @@ class Admin_Home_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-		$contents = Content::all();
+		$contents = Content::where('type', '=', 0)->or_where('type', '=', 1)->get();
 		foreach ($contents as $content) {
 				// $file->path=Storage::url($file->name);
 				$content->path='storage/'.$content->name;

@@ -30,11 +30,12 @@
     <h1>{{__('messages.header_title')}}</h1>
     <div class="line"></div>
     <div class="logo">
-      @if (Auth::check())
+      @if (Auth::check() && Auth::user()->isadmin == true)
       <div class="logout"><a href="{{ url('admin/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{__('messages.logout_title')}}</a></div>
       <form id="logout-form" action="{{ url('admin/logout') }}" method="POST" style="display: none;">
         {{Form::token()}}
       </form>
+      <div class="logout"><a href="{{ url('admin/kanri') }}">{{__('messages.kanri_link')}}</a></div>
       @endif
       <a href="{{__('messages.logo_url')}}">
         <img src="{{asset('/images/logo.png')}}" width="550" height="80" alt="{{__('messages.logo_alt')}}"/>

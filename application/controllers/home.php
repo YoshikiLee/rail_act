@@ -33,7 +33,7 @@ class Home_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-		$contents = Content::all();
+		$contents = Content::where('type', '=', 0)->get();
 		foreach ($contents as $content) {
 				// $file->path=Storage::url($file->name);
 				$content->path='storage/'.$content->name;

@@ -7,7 +7,7 @@ class Admin_Auth_Controller extends Base_Controller {
 	public $errors;
 
 	public function __construct() {
-		// $this->filter( 'before', 'guest' )->except( array( 'logout', 'validate' ) );
+		$this->filter( 'before', 'guest' )->except( array( 'logout', 'validate' ) );
 		// $this->filter( 'before', 'csrf' )->on( 'post' )->except( array( 'login' ) );
 	}
 
