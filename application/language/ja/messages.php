@@ -28,7 +28,6 @@ return array(
     'kanri_link' => '→ 管理',
     'kanri_title' => 'メンバー、コンテンツ管理',
 
-    'dashboard_title' => 'ダッシュボード',
     'member_title' => 'パスワード変更',
     'member_list_title' => 'ユーザ一覧',
     'member_name' => 'ユーザ名',
@@ -44,6 +43,8 @@ return array(
     'member_lastupdated' => '最終更新日時',
     'content_title' => 'コンテンツアップロード',
     'history_title' => 'ダウンロード履歴',
+
+    'home_title' => 'ファイルダウンロード',
 
     'member' => '会員',
     'administrator' => '管理者',

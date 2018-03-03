@@ -135,7 +135,6 @@ Route::group(array('before' => 'admin.auth'), function()
 {
 	Route::get('admin', 'admin_home@index');
 	Route::get('admin/home', 'admin_home@index');
-	Route::get('admin/kanri', 'admin_kanri@index');
 	Route::get('admin/member', 'admin_member@index');
 	Route::post('admin/member/changepassword', 'admin_member@changepassword');
 	Route::get('admin/content', 'admin_content@index');

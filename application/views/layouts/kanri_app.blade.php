@@ -44,7 +44,7 @@
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
               </button>
-              <a class="navbar-brand" href="{{ url('admin/kanri') }}">{{__('messages.kanri_title')}}</a>
+              <a class="navbar-brand" href="{{ url('admin/content') }}">{{__('messages.kanri_title')}}</a>
           </div>
           <!-- /.navbar-header -->
 
@@ -54,7 +54,7 @@
                       <i class="fa fa-user fa-fw"></i> {{ Auth::user()->username }} <i class="fa fa-caret-down"></i>
                   </a>
                   <ul class="dropdown-menu dropdown-user">
-                      <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                      <li><a href="{{ url('admin/home') }}"><i class="fa fa-download fa-fw"></i> {{__('messages.home_title')}}</a>
                       </li>
                       <li class="divider"></li>
                       <li><a href="{{ url('admin/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fa fa-sign-out fa-fw"></i> {{__('messages.logout')}}</a>
@@ -73,13 +73,10 @@
               <div class="sidebar-nav navbar-collapse">
                   <ul class="nav" id="side-menu">
                       <li>
-                          <a href="{{ url('admin/kanri') }}"><i class="fa fa-dashboard fa-fw"></i> {{__('messages.dashboard_title')}}</a>
+                          <a href="{{ url('admin/content') }}"><i class="fa fa-upload fa-fw"></i> {{__('messages.content_title')}}</a>
                       </li>
                       <li>
                           <a href="{{ url('admin/member') }}"><i class="fa fa-user fa-fw"></i> {{__('messages.member_title')}}</a>
-                      </li>
-                      <li>
-                          <a href="{{ url('admin/content') }}"><i class="fa fa-file fa-fw"></i> {{__('messages.content_title')}}</a>
                       </li>
                       <li>
                           <a href="{{ url('admin/history') }}"><i class="fa fa-history fa-fw"></i> {{__('messages.history_title')}}</a>

@@ -35,7 +35,7 @@
       <form id="logout-form" action="{{ url('admin/logout') }}" method="POST" style="display: none;">
         {{Form::token()}}
       </form>
-      <div class="logout"><a href="{{ url('admin/kanri') }}">{{__('messages.kanri_link')}}</a></div>
+      <div class="logout"><a href="{{ url('admin/content') }}">{{__('messages.kanri_link')}}</a></div>
       @endif
       <a href="{{__('messages.logo_url')}}">
         <img src="{{asset('/images/logo.png')}}" width="550" height="80" alt="{{__('messages.logo_alt')}}"/>
