@@ -23,10 +23,10 @@ class Admin_Member_Controller extends Base_Controller {
 		{
 			return Response::json(array('success' => false, 'message' => $validation->errors->first('password')));
 		}
-		$user = User::Find(Input::get('userid'))->first();
+		$user = User::where('id', '=', Input::get('userid'))->first();
 		$user->password = Hash::make(Input::get('password'));
 		$user->save();
-		return Response::json(array('success' => true));
+		return Response::json(array('success' => true, 'lastupdated' => $user->updated_at));
 	}
 
 }

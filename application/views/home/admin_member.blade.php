@@ -52,6 +52,10 @@
                                                       </div>
                                                   </td>
                                               </tr>
+                                              <tr>
+                                                  <th>{{__('messages.member_lastupdated')}}</th>
+                                                  <td><span id="{{ $user->id }}" name="lastupdated">{{ $user->updated_at }}<span></td>
+                                              </tr>
                                           </tbody>
                                       </table>
                                   </div>
@@ -119,6 +123,7 @@ $(document).ready(function() {
                 if(data['success']){
                   $("div[name='showChange']").eq(id).toggle('500');
                   $("div[name='ExecuteChange']").eq(id).toggle('500');
+                  $("span[name='lastupdated']").eq(id).text(data['lastupdated']['date']);
                   BootstrapDialog.show({
                       type: BootstrapDialog.TYPE_DEFAULT,
                       title: '{{__('messages.success')}}',
