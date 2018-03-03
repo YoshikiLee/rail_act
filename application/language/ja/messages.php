@@ -51,6 +51,7 @@ return array(
     'close' => '閉じる',
     'error' => 'エラー',
     'success' => '成功',
+    'cancel' => 'キャンセル',
 
     'logout' => 'ログアウト',
     'logout_title' => '→ ログアウト',

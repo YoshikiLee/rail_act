@@ -39,15 +39,15 @@
                                               <tr>
                                                   <th>{{__('messages.member_password')}}</th>
                                                   <td>
-                                                      <div id="showChange">
-                                                        <button id="showChangeBotton" type="button" class="btn btn-danger">{{__('messages.member_password_change')}}</button>
+                                                      <div id="{{ $user->id }}" name="showChange">
+                                                        <button id="{{ $user->id }}" name="showChangeBotton" type="button" class="btn btn-danger">{{__('messages.member_password_change')}}</button>
                                                       </div>
-                                                      <div id="showChange" class="input-group" style="display: none;">
-                                                        <input type="password" name="password" class="form-control" placeholder="{{__('messages.member_password_input')}}" maxlength=32 autocomplete=OFF>
-                                                        <input type="hidden" name="userid" value="{{ $user->id }}">
+                                                      <div id="{{ $user->id }}" name="ExecuteChange" class="input-group" style="display: none;">
+                                                        <input id="{{ $user->id }}" type="password" name="password" class="form-control" placeholder="{{__('messages.member_password_input')}}" maxlength=32 autocomplete=OFF>
+                                                        <input id="{{ $user->id }}" type="hidden" name="userid" value="{{ $user->id }}">
                                                         <span class="input-group-btn">
-                                                          <button id="confirmChangeBotton" class="btn btn-danger btn-secondary" type="button">{{__('messages.member_password_change')}}</button>
-                                                          <button id="closeChangeBotton" class="btn btn-primary btn-secondary" type="button">{{__('messages.close')}}</button>
+                                                          <button id="{{ $user->id }}" name="confirmChangeBotton" class="btn btn-danger btn-secondary" type="button">{{__('messages.member_password_change')}}</button>
+                                                          <button id="{{ $user->id }}" name="closeChangeBotton" class="btn btn-primary btn-secondary" type="button">{{__('messages.cancel')}}</button>
                                                         </span>
                                                       </div>
                                                   </td>
@@ -75,18 +75,26 @@
 @section('javascript')
 <script type="text/javascript">
 $(document).ready(function() {
-  $('#showChangeBotton').click(function(e) {
+
+  $("button[name='showChangeBotton']").click(function(e) {
     e.preventDefault();
-    $("input[name$='password']").val('');
-    $('div#showChange').toggle('500');
+    id = $(this).attr("id") - 1;
+    $("input[name='password']").eq(id).val('');
+    $("div[name='showChange']").eq(id).toggle('500');
+    $("div[name='ExecuteChange']").eq(id).toggle('500');
   });
-  $('#closeChangeBotton').click(function(e) {
+
+  $("button[name='closeChangeBotton']").click(function(e) {
     e.preventDefault();
-    $("input[name$='password']").val('');
-    $('div#showChange').toggle('500');
+    id = $(this).attr("id") - 1;
+    $("input[name='password']").eq(id).val('');
+    $("div[name='showChange']").eq(id).toggle('500');
+    $("div[name='ExecuteChange']").eq(id).toggle('500');
   });
-  $('#confirmChangeBotton').click(function(e) {
+
+  $("button[name='confirmChangeBotton']").click(function(e) {
     e.preventDefault();
+    id = $(this).attr("id") - 1;
     BootstrapDialog.confirm({
       title: '{{__('messages.member_password_change_confirm_title')}}',
       message: '{{__('messages.member_password_change_confirm')}}',
@@ -98,8 +106,9 @@ $(document).ready(function() {
       btnOKClass: 'btn-danger',
       callback: function(result) {
         if(result){
-          var userid = $("input[name$='userid']").val();
-          var password = $("input[name$='password']").val();
+          var userid = $("input[name='userid']").eq(id).val();
+          var password = $("input[name='password']").eq(id).val();
+          $("input[name='password']").eq(id).val('');
           App.ajax({
               url: '{{ url('admin/member/changepassword') }}',
               data: {
@@ -108,8 +117,8 @@ $(document).ready(function() {
               },
               app_success: function (data, textStatus, jqXHR) {
                 if(data['success']){
-                  $('div#showChange').toggle('500');
-                  $("input[name$='password']").val('');
+                  $("div[name='showChange']").eq(id).toggle('500');
+                  $("div[name='ExecuteChange']").eq(id).toggle('500');
                   BootstrapDialog.show({
                       type: BootstrapDialog.TYPE_DEFAULT,
                       title: '{{__('messages.success')}}',
