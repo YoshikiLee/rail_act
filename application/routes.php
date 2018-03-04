@@ -141,6 +141,8 @@ Route::group(array('before' => 'admin.auth'), function()
 	Route::post('admin/member/changepassword', 'admin_member@changepassword');
 	Route::get('admin/content', 'admin_content@index');
 	Route::get('admin/history', 'admin_history@index');
+	Route::get('admin/history/list', 'admin_history@list');
+	Route::post('admin/history/delete', 'admin_history@delete');
 });
 
 Route::get('admin/login', 'admin_auth@index');

@@ -35,7 +35,7 @@ class Admin_Home_Controller extends Base_Controller {
 	{
 		$contents = Content::all();
 		foreach ($contents as $content) {
-				$content->url='download/'.$content->name;
+				$content->url='admin/download/'.$content->name;
 		}
 		return View::make('home.admin_index')->with('contents', $contents);
 	}

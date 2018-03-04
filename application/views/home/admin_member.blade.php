@@ -105,7 +105,7 @@ $(document).ready(function() {
       type: BootstrapDialog.TYPE_DANGER,
       closable: true,
       draggable: false,
-      btnCancelLabel: '{{__('messages.member_password_change_cancel')}}',
+      btnCancelLabel: '{{__('messages.cancel')}}',
       btnOKLabel: '{{__('messages.member_password_change_process')}}',
       btnOKClass: 'btn-danger',
       callback: function(result) {
@@ -125,7 +125,7 @@ $(document).ready(function() {
                   $("div[name='ExecuteChange']").eq(id).toggle('500');
                   $("span[name='lastupdated']").eq(id).text(data['lastupdated']['date']);
                   BootstrapDialog.show({
-                      type: BootstrapDialog.TYPE_DEFAULT,
+                      type: BootstrapDialog.TYPE_PRIMARY,
                       title: '{{__('messages.success')}}',
                       message: '{{__('messages.member_password_change_finish')}}'
                   });
