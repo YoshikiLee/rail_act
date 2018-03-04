@@ -116,6 +116,7 @@ Route::group(array('before' => 'auth'), function()
 {
 	Route::get('/', 'home@index');
 	Route::get('home', 'home@index');
+	Route::get('download/(:all)', 'home@download');
 });
 
 Route::get('login', 'auth@index');
@@ -135,6 +136,7 @@ Route::group(array('before' => 'admin.auth'), function()
 {
 	Route::get('admin', 'admin_home@index');
 	Route::get('admin/home', 'admin_home@index');
+	Route::get('admin/download/(:all)', 'home@download');
 	Route::get('admin/member', 'admin_member@index');
 	Route::post('admin/member/changepassword', 'admin_member@changepassword');
 	Route::get('admin/content', 'admin_content@index');

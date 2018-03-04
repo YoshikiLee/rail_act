@@ -1,6 +1,6 @@
 <?php
 
-class Create_Contents_Table {
+class Create_Downloads_Table {
 
 	/**
 	 * Make changes to the database.
@@ -9,15 +9,15 @@ class Create_Contents_Table {
 	 */
 	public function up()
 	{
-		Schema::table('contents', function($table)
+		Schema::table('downloads', function($table)
 		{
 			$table->create();
 			$table->increments('id');
-			$table->string('name')->unique();
-			$table->integer('order');
+			$table->string('userid');
+			$table->string('username');
+			$table->string('filename');
+			$table->string('fileextension');
 			$table->boolean('isopen');
-			$table->string('extension');
-			$table->string('description');
 			$table->timestamps();
 		});
 	}
@@ -29,7 +29,7 @@ class Create_Contents_Table {
 	 */
 	public function down()
 	{
-		Schema::drop('contents');
+		Schema::drop('downloads');
 	}
 
 }

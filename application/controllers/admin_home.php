@@ -33,12 +33,28 @@ class Admin_Home_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-		$contents = Content::where('type', '=', 0)->or_where('type', '=', 1)->get();
+		$contents = Content::all();
 		foreach ($contents as $content) {
-				// $file->path=Storage::url($file->name);
-				$content->path='storage/'.$content->name;
+				$content->url='download/'.$content->name;
 		}
 		return View::make('home.admin_index')->with('contents', $contents);
+	}
+
+	public function get_download($filename)
+	{
+		$content = Content::where('name', '=', $filename)->first();
+		if (isset($content) && file_exists($file= path('storage').'content'.DS.$filename)) {
+			$download = new Download;
+			$download->userid = Auth::user()->id;
+			$download->username = Auth::user()->username;
+			$download->filename = $content->name;
+			$download->fileextension = $content->extension;
+			$download->isopen = $content->isopen;
+      $download->save();
+      return Response::download($file, $filename);
+		} else {
+			return Response::error('404');
+		}
 	}
 
 }

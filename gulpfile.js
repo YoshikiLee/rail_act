@@ -42,6 +42,7 @@ gulp.task('kanri-minify-ccs', function() {
       'resources/vendor/metisMenu/metisMenu.css',
       'resources/vendor/font-awesome/css/font-awesome.css',
       'resources/vendor/bootstrap3-dialog/css/bootstrap-dialog.css',
+      'resources/vendor/datatables/css/dataTables.bootstrap.css',
       'resources/assets/css/app.css'
     ])
     .pipe(minifyCSS())
@@ -56,6 +57,9 @@ gulp.task('kanri-minify-js', function() {
       'resources/vendor/bootstrap/js/bootstrap.js',
       'resources/vendor/metisMenu/metisMenu.js',
       'resources/vendor/bootstrap3-dialog/js/bootstrap-dialog.js',
+      'resources/vendor/datatables/js/jquery.dataTables.js',
+      'resources/vendor/datatables-plugins/dataTables.bootstrap.js',
+      'resources/vendor/datatables-responsive/dataTables.responsive.js',
       'resources/assets/js/app.js'
     ])
     .pipe(concat('kanri.min.js'))
