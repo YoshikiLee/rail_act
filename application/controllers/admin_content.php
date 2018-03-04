@@ -9,4 +9,9 @@ class Admin_Content_Controller extends Base_Controller {
 		return View::make('home.admin_content');
 	}
 
+	public function get_list()
+	{
+		return Response::eloquent(Content::all());
+	}
+
 }
