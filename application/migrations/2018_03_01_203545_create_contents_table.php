@@ -14,10 +14,10 @@ class Create_Contents_Table {
 			$table->create();
 			$table->increments('id');
 			$table->string('name')->unique();
-			$table->integer('order');
-			$table->boolean('isopen');
+			$table->integer('order')->default(1);
+			$table->boolean('isopen')->default(0);
 			$table->string('extension');
-			$table->string('description');
+			$table->string('description')->default('');
 			$table->timestamps();
 		});
 	}

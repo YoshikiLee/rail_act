@@ -23,6 +23,7 @@
   <meta property="og:site_name" content="{{__('messages.og_site_name')}}" />
   <meta property="og:description" content="{{__('messages.og_description')}}" />
   <link href="{{ asset('css/kanri.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/jquery.fileupload.css') }}" rel="stylesheet">
   <style>
   body {
     font-family: "Meiryo","メイリオ","MS PGothic","MS Pゴシック",sans-serif;
@@ -109,6 +110,9 @@
 
   <!-- Scripts -->
   <script src="{{ asset('js/kanri.min.js') }}"></script>
+  <script src="{{ asset('js/jquery.ui.widget.js') }}"></script>
+  <script src="{{ asset('js/jquery.iframe-transport.js') }}"></script>
+  <script src="{{ asset('js/jquery.fileupload.js') }}"></script>
   @yield('javascript')
 </body>
 </html>

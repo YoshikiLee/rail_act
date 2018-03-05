@@ -42,6 +42,7 @@ return array(
     'member_lastupdated' => '最終更新日時',
     'content_title' => 'コンテンツアップロード',
     'content_list_title' => 'コンテンツ一覧',
+    'content_upload_title' => 'コンテンツアップロード',
     'content_list_no' => 'No',
     'content_list_id' => 'ファイルID',
     'content_list_name' => 'ファイル名',
@@ -78,6 +79,7 @@ return array(
     'success' => '成功',
     'cancel' => 'キャンセル',
     'delete' => '削除',
+    'upload' => 'アップロード',
 
     'logout' => 'ログアウト',
     'logout_title' => '→ ログアウト',

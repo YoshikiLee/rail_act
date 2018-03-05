@@ -54,4 +54,20 @@ class Admin_Content_Controller extends Base_Controller {
 		return Response::json(array('success' => true));
 	}
 
+	public function post_upload()
+	{
+		$upload_handler = new UploadHandler();
+	}
+
+	public function post_regist()
+	{
+		var_dump(Input::get('files'));
+		foreach (Input::get('files') as $file) {
+			$content = new Content;
+			$content->name = '11';
+			$content->extension = 'pdf';
+			$content->save();
+		}
+	}
+
 }

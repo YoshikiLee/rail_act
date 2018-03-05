@@ -22,6 +22,39 @@ background-color: #B0BED9;
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+						<div class="row">
+								<div class="col-lg-12">
+										<div class="panel panel-default">
+												<div class="panel-heading">{{__('messages.content_upload_title')}}</div>
+												<!-- /.panel-heading -->
+												<div class="panel-body">
+													{{Form::open()}}
+													{{Form::token()}}
+													<!-- The fileinput-button span is used to style the file input field as button -->
+											    <span class="btn btn-success fileinput-button">
+											        <i class="glyphicon glyphicon-plus"></i>
+											        <span>ファイル選択</span>
+											        <!-- The file input field used as target for the file upload widget -->
+											        <input id="fileupload" type="file" name="files[]" multiple>
+											    </span>
+											    <br>
+											    <br>
+											    <!-- The global progress bar -->
+											    <div id="progress" class="progress">
+											        <div class="progress-bar progress-bar-success"></div>
+											    </div>
+											    <!-- The container for the uploaded files -->
+											    <div id="files" class="files"></div>
+													<button id="fire" class="btn btn-primary" type="button">{{__('messages.upload')}}</button>
+													{{Form::close()}}
+												</div>
+												<!-- /.panel-body -->
+										</div>
+										<!-- /.panel -->
+								</div>
+								<!-- /.col-lg-12 -->
+						</div>
+						<!-- /.row -->
             <div class="row">
                 <div class="col-lg-12">
                     <div class="panel panel-default">
@@ -143,6 +176,14 @@ $(document).ready(function() {
             'id':id,
             'isopen':isopen
           },
+					add: function (e, data) {
+            data.context = $('<button/>').text('Upload')
+                .appendTo(document.body)
+                .click(function () {
+                    data.context = $('<p/>').text('Uploading...').replaceAll($(this));
+                    data.submit();
+                });
+        	},
           app_success: function (data, textStatus, jqXHR) {
             if(!data['success']){
               BootstrapDialog.show({
@@ -272,6 +313,60 @@ $(document).ready(function() {
         });
       }
     });
+
+});
+$(function () {
+    'use strict';
+    $('#fileupload').fileupload({
+        url: '{{ url('admin/content/upload') }}',
+        dataType: 'json',
+        done: function (e, data) {
+            $.each(data.result.files, function (index, file) {
+                $('<p/>').text(file.name + ' (' + file.size + ' KB)').appendTo('#files');
+            });
+        },
+        progressall: function (e, data) {
+            var progress = parseInt(data.loaded / data.total * 100, 10);
+            $('#progress .progress-bar').css(
+                'width',
+                progress + '%'
+            );
+        }
+    }).prop('disabled', !$.support.fileInput)
+        .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+		$("#fire").click(function(e) {
+			e.preventDefault();
+			var files = $("#fileupload");
+			App.ajax({
+					url: '{{ url('admin/content/regist') }}',
+					data: {
+						'files':files
+					},
+					app_success: function (data, textStatus, jqXHR) {
+						if(data['success']){
+							BootstrapDialog.show({
+									type: BootstrapDialog.TYPE_PRIMARY,
+									title: '{{__('messages.success')}}',
+									message: '{{__('messages.member_password_change_finish')}}'
+							});
+						} else {
+							BootstrapDialog.show({
+									type: BootstrapDialog.TYPE_DANGER,
+									title: '{{__('messages.error')}}',
+									message: data['message'],
+									buttons: [{
+											label: '{{__('messages.close')}}',
+											cssClass: 'btn-default',
+											action: function(dialogItself){
+													dialogItself.close();
+											}
+									}]
+							});
+						}
+					}
+			});
+		});
 });
 </script>
 @endsection
