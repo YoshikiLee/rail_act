@@ -65,6 +65,7 @@ $(document).ready(function() {
         "url" : "{{ url('admin/history/list') }}",
         "dataSrc" : ""
       },
+      "order": [[ 5, "desc" ]],
       "columns": [
         { "data": "id" },
         { "data": "username" },

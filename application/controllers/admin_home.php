@@ -33,7 +33,7 @@ class Admin_Home_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-		$contents = Content::all();
+		$contents = Content::order_by('order', 'asc')->get();
 		foreach ($contents as $content) {
 				$content->url='admin/download/'.$content->name;
 		}

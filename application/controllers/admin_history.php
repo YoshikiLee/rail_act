@@ -11,7 +11,7 @@ class Admin_History_Controller extends Base_Controller {
 
 	public function get_list()
 	{
-		return Response::eloquent(Download::all());
+		return Response::eloquent(Download::order_by('created_at', 'desc')->take(5000)->get());
 	}
 
 	public function post_delete()

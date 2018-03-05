@@ -35,6 +35,28 @@ background-color: #B0BED9;
                                         <th>{{__('messages.content_list_type')}}</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    @foreach ($contents as $content)
+                                    <tr>
+                                        <td>{{ $content->id }}</td>
+                                        <td>{{ $content->name }}</td>
+                                        <td>{{ $content->extension }}</td>
+                                        <td>{{ $content->created_at }}</td>
+                                        <td>{{ $content->description }}</td>
+                                        <td><input type="text" class="form-control" value="{{ $content->order }}" id="{{ $content->id }}" name="order{{ $content->id }}"></td>
+                                        <td>
+                                            <select class="form-control" id="{{ $content->id }}" name="isopen{{ $content->id }}">
+                                              <option value="0" {{ $content->isopen ? 'selected' : '' }}>
+                                                  公開
+                                              </option>
+                                              <option value="1" {{ $content->isopen ? 'selected' : '' }}>
+                                                  非公開
+                                              </option>
+                                            </select>
+                                        </td>
+                                   </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                             <!-- /.table-responsive -->
                         </div>
@@ -53,19 +75,7 @@ background-color: #B0BED9;
 <script type="text/javascript">
 $(document).ready(function() {
     var table = $('#dataTables-content').DataTable({
-      "ajax":{
-        "url" : "{{ url('admin/content/list') }}",
-        "dataSrc" : ""
-      },
-      "columns": [
-        { "data": "id" },
-        { "data": "name" },
-        { "data": "extension" },
-        { "data": "updated_at" },
-        { "data": "description" },
-        { "data": "order" },
-        { "data": "isopen" }
-      ],
+      "order": [[ 3, "desc" ]],
       "language": {
         "sEmptyTable":     "テーブルにデータがありません",
         "sInfo":           " _TOTAL_ 件中 _START_ から _END_ まで表示",
@@ -95,6 +105,34 @@ $(document).ready(function() {
       $(this).toggleClass('selected');
     });
 
+    table.$('select').click( function(e) {
+      e.preventDefault();
+      var id = $(this).attr("id");
+      var isopen = $(this).val();
+      App.ajax({
+          url: '{{ url('admin/content/isopen') }}',
+          data: {
+            'id':id,
+            'isopen':isopen
+          },
+          app_success: function (data, textStatus, jqXHR) {
+            if(!data['success']){
+              BootstrapDialog.show({
+                  type: BootstrapDialog.TYPE_DANGER,
+                  title: '{{__('messages.error')}}',
+                  message: data['message'],
+                  buttons: [{
+                      label: '{{__('messages.close')}}',
+                      cssClass: 'btn-default',
+                      action: function(dialogItself){
+                          dialogItself.close();
+                      }
+                  }]
+              });
+            }
+          }
+      });
+    });
 });
 </script>
 @endsection
