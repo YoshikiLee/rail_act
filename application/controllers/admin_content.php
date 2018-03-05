@@ -42,4 +42,16 @@ class Admin_Content_Controller extends Base_Controller {
 		return Response::json(array('success' => true));
 	}
 
+	public function post_delete()
+	{
+		foreach (Input::get('ids') as $id) {
+			$content = Content::find($id);
+			if (isset($content)) {
+				File::delete(path('storage').'content'.DS.$content->name);
+				DB::table('contents')->where('id', '=', $id)->delete();
+			}
+		}
+		return Response::json(array('success' => true));
+	}
+
 }

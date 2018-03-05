@@ -86,6 +86,15 @@ background-color: #B0BED9;
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
+						<div class="row">
+								<div class="col-xs-12">
+										<div class="text-right">
+												<button id="button-delete" type="button" class="btn btn-danger btn-block" style="margin-bottom: 5px">{{__('messages.delete')}}</button>
+										</div>
+								</div>
+								<!-- /.col-xs-12 -->
+						</div>
+						<!-- /.row -->
         </div>
         <!-- /#page-wrapper -->
 @endsection
@@ -209,6 +218,59 @@ $(document).ready(function() {
             }
           }
       });
+    });
+
+		$('#button-delete').click( function (e) {
+      e.preventDefault();
+      if (table.rows('.selected').data().length > 0) {
+        BootstrapDialog.confirm({
+          title: '{{__('messages.content_delete_title')}}',
+          message: '{{__('messages.content_delete_confirm')}}',
+          type: BootstrapDialog.TYPE_DANGER,
+          closable: true,
+          draggable: false,
+          btnCancelLabel: '{{__('messages.cancel')}}',
+          btnOKLabel: '{{__('messages.delete')}}',
+          btnOKClass: 'btn-danger',
+          callback: function(result) {
+            if(result){
+              var ids = [];
+              for (var i = 0; i < table.rows('.selected').data().length; i++) {
+                ids.push(table.rows('.selected').data()[i][0]);
+              }
+              App.ajax({
+                  url: '{{ url('admin/content/delete') }}',
+                  data: {
+                    'ids':ids
+                  },
+                  app_success: function (data, textStatus, jqXHR) {
+                    if(data['success']){
+											table.rows('.selected').remove().draw();
+                      BootstrapDialog.show({
+                          type: BootstrapDialog.TYPE_PRIMARY,
+                          title: '{{__('messages.success')}}',
+                          message: '{{__('messages.content_delete_finish')}}'
+                      });
+                    } else {
+                      BootstrapDialog.show({
+                          type: BootstrapDialog.TYPE_DANGER,
+                          title: '{{__('messages.error')}}',
+                          message: data['message'],
+                          buttons: [{
+                              label: '{{__('messages.close')}}',
+                              cssClass: 'btn-default',
+                              action: function(dialogItself){
+                                  dialogItself.close();
+                              }
+                          }]
+                      });
+                    }
+                  }
+              });
+            }
+          }
+        });
+      }
     });
 });
 </script>

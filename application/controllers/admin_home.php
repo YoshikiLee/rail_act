@@ -43,7 +43,8 @@ class Admin_Home_Controller extends Base_Controller {
 	public function get_download($filename)
 	{
 		$content = Content::where('name', '=', $filename)->first();
-		if (isset($content) && file_exists($file= path('storage').'content'.DS.$filename)) {
+		$file = path('storage').'content'.DS.$filename;
+		if (isset($content) && file_exists($file)) {
 			$download = new Download;
 			$download->userid = Auth::user()->id;
 			$download->username = Auth::user()->username;
