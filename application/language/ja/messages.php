@@ -43,6 +43,7 @@ return array(
     'content_title' => 'コンテンツアップロード',
     'content_list_title' => 'コンテンツ一覧',
     'content_list_no' => 'No',
+    'content_list_id' => 'ファイルID',
     'content_list_name' => 'ファイル名',
     'content_list_extension' => 'ファイル形式',
     'content_list_uploaddate' => 'アップロード日時',
@@ -60,6 +61,9 @@ return array(
     'history_delete_title' => '履歴削除確認',
     'history_delete_confirm' => '選択した履歴を削除してよろしいですか？',
     'history_delete_finish' => '履歴を削除しました。',
+    'history_statistic_title' => 'ダウンロード履歴統計',
+    'history_statistic_total' => 'ダウンロード数',
+
 
     'home_title' => 'ファイルダウンロード',
 

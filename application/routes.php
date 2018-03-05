@@ -144,6 +144,8 @@ Route::group(array('before' => 'admin.auth'), function()
 	Route::get('admin/history', 'admin_history@index');
 	Route::get('admin/history/list', 'admin_history@list');
 	Route::post('admin/history/delete', 'admin_history@delete');
+	Route::get('admin/statistic', 'admin_statistic@index');
+	Route::get('admin/statistic/list', 'admin_statistic@list');
 });
 
 Route::get('admin/login', 'admin_auth@index');

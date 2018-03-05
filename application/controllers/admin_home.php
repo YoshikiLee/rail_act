@@ -47,6 +47,7 @@ class Admin_Home_Controller extends Base_Controller {
 			$download = new Download;
 			$download->userid = Auth::user()->id;
 			$download->username = Auth::user()->username;
+			$download->fileid = $content->id;
 			$download->filename = $content->name;
 			$download->fileextension = $content->extension;
 			$download->isopen = $content->isopen;

@@ -15,6 +15,7 @@ class Create_Downloads_Table {
 			$table->increments('id');
 			$table->string('userid');
 			$table->string('username');
+			$table->string('fileid');
 			$table->string('filename');
 			$table->string('fileextension');
 			$table->boolean('isopen');

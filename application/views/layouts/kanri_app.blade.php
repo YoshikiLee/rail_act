@@ -23,6 +23,14 @@
   <meta property="og:site_name" content="{{__('messages.og_site_name')}}" />
   <meta property="og:description" content="{{__('messages.og_description')}}" />
   <link href="{{ asset('css/kanri.min.css') }}" rel="stylesheet">
+  <style>
+  body {
+    font-family: "Meiryo","メイリオ","MS PGothic","MS Pゴシック",sans-serif;
+    font-style: normal;
+    font-weight: 100;
+    margin-bottom: 100px;
+  }
+  </style>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -80,6 +88,14 @@
                       </li>
                       <li>
                           <a href="{{ url('admin/history') }}"><i class="fa fa-history fa-fw"></i> {{__('messages.history_title')}}</a>
+                          <ul class="nav nav-second-level">
+                              <li>
+                                  <a href="{{ url('admin/history') }}"> {{__('messages.history_title')}}</a>
+                              </li>
+                              <li>
+                                  <a href="{{ url('admin/statistic') }}"> {{__('messages.history_statistic_title')}}</a>
+                              </li>
+                          </ul>
                       </li>
                   </ul>
               </div>
