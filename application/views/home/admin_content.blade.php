@@ -5,6 +5,11 @@
 table.dataTable tbody tr.selected {
 background-color: #B0BED9;
 }
+
+.fa-large
+{
+	font-size: 30px ;
+}
 </style>
 @endsection
 
@@ -40,9 +45,23 @@ background-color: #B0BED9;
                                     <tr>
                                         <td>{{ $content->id }}</td>
                                         <td>{{ $content->name }}</td>
-                                        <td>{{ $content->extension }}</td>
+                                        <td>
+                                          @if ( $content->extension == 'xlsx' || $content->extension == 'xlsm' || $content->extension == 'xls' )
+                                              <i class="fa fa-file-excel-o fa-large"></i>
+                                          @elseif ( $content->extension == 'pdf' )
+                                              <i class="fa fa-file-pdf-o fa-large"></i>
+                                          @elseif ( $content->extension == 'pptx' || $content->extension == 'pptm' || $content->extension == 'ppt' )
+                                              <i class="fa fa-file-powerpoint-o fa-large"></i>
+                                          @elseif ( $content->extension == 'jpg' || $content->extension == 'jpeg' )
+                                              <i class="fa fa-file-image-o fa-large"></i>
+                                          @elseif ( $content->extension == 'docx' || $content->extension == 'docm' || $content->extension == 'doc' )
+                                              <i class="fa fa-file-word-o fa-large"></i>
+                                          @else
+                                              <i class="fa fa-file-o fa-large"></i>
+                                          @endif
+                                        </td>
                                         <td>{{ $content->created_at }}</td>
-                                        <td>{{ $content->description }}</td>
+                                        <td><input type="text" class="form-control" value="{{ $content->description }}" id="{{ $content->id }}" name="description" maxlength="20"></td>
                                         <td><input type="text" class="form-control" value="{{ $content->order }}" id="{{ $content->id }}" name="order" maxlength="10"></td>
                                         <td>
                                             <select class="form-control" id="{{ $content->id }}" name="isopen{{ $content->id }}">
@@ -143,6 +162,35 @@ $(document).ready(function() {
           data: {
             'id':id,
             'order':order
+          },
+          app_success: function (data, textStatus, jqXHR) {
+            if(!data['success']){
+              BootstrapDialog.show({
+                  type: BootstrapDialog.TYPE_DANGER,
+                  title: '{{__('messages.error')}}',
+                  message: data['message'],
+                  buttons: [{
+                      label: '{{__('messages.close')}}',
+                      cssClass: 'btn-default',
+                      action: function(dialogItself){
+                          dialogItself.close();
+                      }
+                  }]
+              });
+            }
+          }
+      });
+    });
+
+    table.$('input[name="description"]').change( function(e) {
+      e.preventDefault();
+      var id = $(this).attr("id");
+      var description = $(this).val();
+      App.ajax({
+          url: '{{ url('admin/content/description') }}',
+          data: {
+            'id':id,
+            'description':description
           },
           app_success: function (data, textStatus, jqXHR) {
             if(!data['success']){

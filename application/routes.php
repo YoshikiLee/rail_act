@@ -142,6 +142,7 @@ Route::group(array('before' => 'admin.auth'), function()
 	Route::get('admin/content', 'admin_content@index');
 	Route::post('admin/content/isopen', 'admin_content@isopen');
 	Route::post('admin/content/order', 'admin_content@order');
+	Route::post('admin/content/description', 'admin_content@description');
 	Route::get('admin/history', 'admin_history@index');
 	Route::get('admin/history/list', 'admin_history@list');
 	Route::post('admin/history/delete', 'admin_history@delete');

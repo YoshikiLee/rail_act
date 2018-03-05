@@ -34,4 +34,12 @@ class Admin_Content_Controller extends Base_Controller {
 		return Response::json(array('success' => true));
 	}
 
+	public function post_description()
+	{
+		$content = Content::find(Input::get('id'));
+		$content->description = Input::get('description');
+		$content->save();
+		return Response::json(array('success' => true));
+	}
+
 }
