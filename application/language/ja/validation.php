@@ -145,6 +145,7 @@ return array(
 	'attributes' => array(
 		"username" => "ユーザ名",
 		"password" => "パスワード",
+		"order" => "表示順番",
 	),
 
 );

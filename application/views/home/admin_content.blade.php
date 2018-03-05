@@ -43,7 +43,7 @@ background-color: #B0BED9;
                                         <td>{{ $content->extension }}</td>
                                         <td>{{ $content->created_at }}</td>
                                         <td>{{ $content->description }}</td>
-                                        <td><input type="text" class="form-control" value="{{ $content->order }}" id="{{ $content->id }}" name="order{{ $content->id }}"></td>
+                                        <td><input type="text" class="form-control" value="{{ $content->order }}" id="{{ $content->id }}" name="order" maxlength="10"></td>
                                         <td>
                                             <select class="form-control" id="{{ $content->id }}" name="isopen{{ $content->id }}">
                                               <option value="0" {{ $content->isopen ? 'selected' : '' }}>
@@ -105,7 +105,7 @@ $(document).ready(function() {
       $(this).toggleClass('selected');
     });
 
-    table.$('select').click( function(e) {
+    table.$('select').change( function(e) {
       e.preventDefault();
       var id = $(this).attr("id");
       var isopen = $(this).val();
@@ -114,6 +114,35 @@ $(document).ready(function() {
           data: {
             'id':id,
             'isopen':isopen
+          },
+          app_success: function (data, textStatus, jqXHR) {
+            if(!data['success']){
+              BootstrapDialog.show({
+                  type: BootstrapDialog.TYPE_DANGER,
+                  title: '{{__('messages.error')}}',
+                  message: data['message'],
+                  buttons: [{
+                      label: '{{__('messages.close')}}',
+                      cssClass: 'btn-default',
+                      action: function(dialogItself){
+                          dialogItself.close();
+                      }
+                  }]
+              });
+            }
+          }
+      });
+    });
+
+    table.$('input[name="order"]').change( function(e) {
+      e.preventDefault();
+      var id = $(this).attr("id");
+      var order = $(this).val();
+      App.ajax({
+          url: '{{ url('admin/content/order') }}',
+          data: {
+            'id':id,
+            'order':order
           },
           app_success: function (data, textStatus, jqXHR) {
             if(!data['success']){
