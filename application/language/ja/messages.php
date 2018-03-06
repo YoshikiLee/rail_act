@@ -54,6 +54,8 @@ return array(
     'content_delete_title' => 'ファイル削除確認',
     'content_delete_confirm' => '選択したファイルを削除してよろしいですか？',
     'content_delete_finish' => 'ファイルを削除しました。',
+    'content_upload_finish' => 'ファイルをアップロードしました。',
+    'content_upload_no_file' => 'ファイルを選択してください。',
     'history_title' => 'ダウンロード履歴',
     'history_list_title' => 'ダウンロード履歴一覧',
     'history_list_no' => 'No',
@@ -89,6 +91,8 @@ return array(
     'download_title' => '会員様専用ダウンロードコンテンツ',
     'download_sub_title' => '技術資料',
     'download_desciprtion' => 'アイコンをクリックすると、データをダウンロードしていただけます。',
+
+    'ng_upload' => 'ファイル（:attribute）はすでにアップロードしました。',
 
     'footer_copyright' => 'Copyright © 2018 rail-act. All Rights Reserved.',
 );

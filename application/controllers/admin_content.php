@@ -47,7 +47,7 @@ class Admin_Content_Controller extends Base_Controller {
 		foreach (Input::get('ids') as $id) {
 			$content = Content::find($id);
 			if (isset($content)) {
-				File::delete(path('storage').'content'.DS.$content->name);
+				File::delete(path('public').'files'.DS.$content->name);
 				DB::table('contents')->where('id', '=', $id)->delete();
 			}
 		}
@@ -61,13 +61,22 @@ class Admin_Content_Controller extends Base_Controller {
 
 	public function post_regist()
 	{
-		var_dump(Input::get('files'));
-		foreach (Input::get('files') as $file) {
-			$content = new Content;
-			$content->name = '11';
-			$content->extension = 'pdf';
-			$content->save();
+		foreach (Input::get('names') as $name) {
+			if (!empty($name)) {
+				$count = Content::where('name', '=', $name)->count();
+				if ($count == 0) {
+					$content = new Content;
+					$content->name = $name;
+					$content->extension = File::extension($name);
+					$content->save();
+				} else {
+					return Response::json(array('success' => false, 'message' => Lang::line('messages.ng_upload', array('attribute' => $name))->get()));
+				}
+			} else {
+				return Response::json(array('success' => false, 'message' => Lang::line('messages.content_upload_no_file')->get()));
+			}
 		}
+		return Response::json(array('success' => true));
 	}
 
 }

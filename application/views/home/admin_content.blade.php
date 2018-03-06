@@ -37,15 +37,15 @@ background-color: #B0BED9;
 											        <!-- The file input field used as target for the file upload widget -->
 											        <input id="fileupload" type="file" name="files[]" multiple>
 											    </span>
+													<button id="fire" class="btn btn-primary" type="button">{{__('messages.upload')}}</button>
 											    <br>
 											    <br>
 											    <!-- The global progress bar -->
 											    <div id="progress" class="progress">
-											        <div class="progress-bar progress-bar-success"></div>
+											        <div class="progress-bar progress-bar-success progress-bar-striped active"></div>
 											    </div>
 											    <!-- The container for the uploaded files -->
-											    <div id="files" class="files"></div>
-													<button id="fire" class="btn btn-primary" type="button">{{__('messages.upload')}}</button>
+													<textarea id="files" class="form-control" rows="5" readonly></textarea>
 													{{Form::close()}}
 												</div>
 												<!-- /.panel-body -->
@@ -176,14 +176,6 @@ $(document).ready(function() {
             'id':id,
             'isopen':isopen
           },
-					add: function (e, data) {
-            data.context = $('<button/>').text('Upload')
-                .appendTo(document.body)
-                .click(function () {
-                    data.context = $('<p/>').text('Uploading...').replaceAll($(this));
-                    data.submit();
-                });
-        	},
           app_success: function (data, textStatus, jqXHR) {
             if(!data['success']){
               BootstrapDialog.show({
@@ -315,14 +307,26 @@ $(document).ready(function() {
     });
 
 });
-$(function () {
+$(document).ready(function() {
     'use strict';
     $('#fileupload').fileupload({
         url: '{{ url('admin/content/upload') }}',
         dataType: 'json',
+				add: function( e, data ) {
+					var abortBtn = $( '<a/>' ).attr( 'href', 'javascript:void(0)' ).append( 'Abort' )
+						.click( function() {
+							data.abort();
+							data.context.remove();
+						});
+						data.context = $( '<div/>' ).appendTo( document.body );
+						data.context.append( $( '<p/>' ) ).append( 'Uploading ' + data.files[0].name ).append( abortBtn );
+						data.submit();
+				},
         done: function (e, data) {
             $.each(data.result.files, function (index, file) {
-                $('<p/>').text(file.name + ' (' + file.size + ' KB)').appendTo('#files');
+                $('<p/>').text(file.name).appendTo('#files');
+								var txt = $("textarea#files");
+								txt.val( txt.val() + file.name + "\n");
             });
         },
         progressall: function (e, data) {
@@ -337,35 +341,39 @@ $(function () {
 
 		$("#fire").click(function(e) {
 			e.preventDefault();
-			var files = $("#fileupload");
-			App.ajax({
-					url: '{{ url('admin/content/regist') }}',
-					data: {
-						'files':files
-					},
-					app_success: function (data, textStatus, jqXHR) {
-						if(data['success']){
-							BootstrapDialog.show({
-									type: BootstrapDialog.TYPE_PRIMARY,
-									title: '{{__('messages.success')}}',
-									message: '{{__('messages.member_password_change_finish')}}'
-							});
-						} else {
-							BootstrapDialog.show({
-									type: BootstrapDialog.TYPE_DANGER,
-									title: '{{__('messages.error')}}',
-									message: data['message'],
-									buttons: [{
-											label: '{{__('messages.close')}}',
-											cssClass: 'btn-default',
-											action: function(dialogItself){
-													dialogItself.close();
-											}
-									}]
-							});
+			var names = $('#files').val().replace(/\r?\n/g,",").slice(0, -1).split(",");
+			if (names.length > 0) {
+				App.ajax({
+						url: '{{ url('admin/content/regist') }}',
+						data: {
+							'names':names
+						},
+						app_success: function (data, textStatus, jqXHR) {
+							console.log(data);
+							if(data['success']){
+								setTimeout("location.reload()",1000);
+								BootstrapDialog.show({
+										type: BootstrapDialog.TYPE_PRIMARY,
+										title: '{{__('messages.success')}}',
+										message: '{{__('messages.content_upload_finish')}}'
+								});
+							} else {
+								BootstrapDialog.show({
+										type: BootstrapDialog.TYPE_DANGER,
+										title: '{{__('messages.error')}}',
+										message: data['message'],
+										buttons: [{
+												label: '{{__('messages.close')}}',
+												cssClass: 'btn-default',
+												action: function(dialogItself){
+														dialogItself.close();
+												}
+										}]
+								});
+							}
 						}
-					}
-			});
+				});
+			}
 		});
 });
 </script>
