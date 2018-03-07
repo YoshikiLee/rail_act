@@ -38,6 +38,7 @@ background-color: #B0BED9;
 											        <input id="fileupload" type="file" name="files[]" multiple>
 											    </span>
 													<button id="fire" class="btn btn-primary" type="button">{{__('messages.upload')}}</button>
+													<button id="allcancel" class="btn btn-warning" type="button">{{__('messages.cancel')}}</button>
 											    <br>
 											    <br>
 											    <!-- The global progress bar -->
@@ -312,16 +313,6 @@ $(document).ready(function() {
     $('#fileupload').fileupload({
         url: '{{ url('admin/content/upload') }}',
         dataType: 'json',
-				add: function( e, data ) {
-					var abortBtn = $( '<a/>' ).attr( 'href', 'javascript:void(0)' ).append( 'Abort' )
-						.click( function() {
-							data.abort();
-							data.context.remove();
-						});
-						data.context = $( '<div/>' ).appendTo( document.body );
-						data.context.append( $( '<p/>' ) ).append( 'Uploading ' + data.files[0].name ).append( abortBtn );
-						data.submit();
-				},
         done: function (e, data) {
             $.each(data.result.files, function (index, file) {
                 $('<p/>').text(file.name).appendTo('#files');
@@ -338,6 +329,14 @@ $(document).ready(function() {
         }
     }).prop('disabled', !$.support.fileInput)
         .parent().addClass($.support.fileInput ? undefined : 'disabled');
+
+		$("#allcancel").click(function(e) {
+				e.preventDefault();
+				var names = $('#files').val().replace(/\r?\n/g,",").slice(0, -1).split(",");
+				$('#progress .progress-bar').css('width', 0);
+				$('#progress .progress-bar').html('');
+				$('#files').val('');
+		});
 
 		$("#fire").click(function(e) {
 			e.preventDefault();
