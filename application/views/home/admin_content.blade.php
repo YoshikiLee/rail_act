@@ -320,6 +320,22 @@ $(document).ready(function() {
 								txt.val( txt.val() + file.name + "\n");
             });
         },
+				fail: function (e, data) {
+					$('#progress .progress-bar').css('width', 0);
+					$('#progress .progress-bar').html('');
+					BootstrapDialog.show({
+							type: BootstrapDialog.TYPE_DANGER,
+							title: '{{__('messages.error')}}',
+							message: data['errorThrown'],
+							buttons: [{
+									label: '{{__('messages.close')}}',
+									cssClass: 'btn-default',
+									action: function(dialogItself){
+											dialogItself.close();
+									}
+							}]
+					});
+        },
         progressall: function (e, data) {
             var progress = parseInt(data.loaded / data.total * 100, 10);
             $('#progress .progress-bar').css(
@@ -348,7 +364,6 @@ $(document).ready(function() {
 							'names':names
 						},
 						app_success: function (data, textStatus, jqXHR) {
-							console.log(data);
 							if(data['success']){
 								setTimeout("location.reload()",1000);
 								BootstrapDialog.show({
