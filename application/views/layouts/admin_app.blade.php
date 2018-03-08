@@ -23,7 +23,7 @@
   <meta property="og:site_name" content="{{__('messages.og_site_name')}}" />
   <meta property="og:description" content="{{__('messages.og_description')}}" />
   <link href="{{ asset('css/front.min.css') }}" rel="stylesheet">
-  @yield('scripts')
+  @yieldContent('scripts')
 </head>
 <body>
   <header id="header">
@@ -50,7 +50,7 @@
     </h2>
   </div>
 
-  @yield('content')
+  @yieldContent('content')
 
   <!-- InstanceEndEditable -->
   <footer id="footer" class="clearfix"><!-- /footer-btn/sp -->
@@ -60,6 +60,6 @@
   </footer><!-- /footer -->
   <!-- Scripts -->
   <script src="{{ asset('js/front.min.js') }}"></script>
-  @yield('javascript')
+  @yieldContent('javascript')
 </body>
 </html>

@@ -39,7 +39,7 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
-  @yield('scripts')
+  @yieldContent('scripts')
 </head>
 <body>
   <div id="wrapper">
@@ -104,7 +104,7 @@
           </div>
           <!-- /.navbar-static-side -->
       </nav>
-      @yield('content')
+      @yieldContent('content')
   </div>
   <!-- /#wrapper -->
 
@@ -113,6 +113,6 @@
   <script src="{{ asset('js/jquery.ui.widget.js') }}"></script>
   <script src="{{ asset('js/jquery.iframe-transport.js') }}"></script>
   <script src="{{ asset('js/jquery.fileupload.js') }}"></script>
-  @yield('javascript')
+  @yieldContent('javascript')
 </body>
 </html>
