@@ -23,7 +23,7 @@ return array(
     'login_password' => 'パスワード',
     'login_button' => 'ログイン',
 
-    'login_title' => '→ ログイン',
+    'login_title' => 'ログイン',
 
     'kanri_link' => '→ 管理',
     'kanri_title' => 'メンバー、コンテンツ管理',

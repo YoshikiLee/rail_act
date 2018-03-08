@@ -9,7 +9,7 @@
       <span class="tex14 redb02">{{__('messages.logout_finish1')}}</span>
     </p>
     <p class="center-box">
-      <span class="tex14 redb02"><a href="{{ url('admin/login') }}">{{__('messages.login_title')}}</a></span>
+      <a href="{{ url('admin/login') }}"><button type="button" style="font-size:1.4em;height:40px;width:200px">{{__('messages.login_title')}}</button></a>
       <br>
       <br>
       <br>
