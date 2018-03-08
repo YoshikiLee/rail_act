@@ -35,25 +35,29 @@ class Admin_Home_Controller extends Base_Controller {
 	{
 		$contents = Content::order_by('order', 'asc')->get();
 		foreach ($contents as $content) {
-				$content->url='admin/download/'.$content->name;
+				$content->url='admin/download/'.$content->id;
 		}
 		return View::make('home.admin_index')->with('contents', $contents);
 	}
 
-	public function get_download($filename)
+	public function get_download($fileid)
 	{
-		$content = Content::where('name', '=', $filename)->first();
-		$file = $GLOBALS['laravel_paths']['base'].'files'.DS.$filename;
-		if (isset($content) && file_exists($file)) {
-			$download = new Download;
-			$download->userid = Auth::user()->id;
-			$download->username = Auth::user()->username;
-			$download->fileid = $content->id;
-			$download->filename = $content->name;
-			$download->fileextension = $content->extension;
-			$download->isopen = $content->isopen;
-      $download->save();
-      return Response::download($file, $filename);
+		$content = Content::find($fileid);
+		if (isset($content)) {
+			$file = $GLOBALS['laravel_paths']['base'].'files'.DS.$content->id;
+			if (File::exists($file)) {
+				$download = new Download;
+				$download->userid = Auth::user()->id;
+				$download->username = Auth::user()->username;
+				$download->fileid = $content->id;
+				$download->filename = $content->name;
+				$download->fileextension = $content->extension;
+				$download->isopen = $content->isopen;
+	      $download->save();
+	      return Response::download($file, $content->name);
+			} else {
+				return Response::error('404');
+			}
 		} else {
 			return Response::error('404');
 		}

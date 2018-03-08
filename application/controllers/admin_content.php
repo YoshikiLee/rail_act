@@ -47,7 +47,7 @@ class Admin_Content_Controller extends Base_Controller {
 		foreach (Input::get('ids') as $id) {
 			$content = Content::find($id);
 			if (isset($content)) {
-				File::delete($GLOBALS['laravel_paths']['base'].'files'.DS.$content->name);
+				File::delete($GLOBALS['laravel_paths']['base'].'files'.DS.$content->id);
 				DB::table('contents')->where('id', '=', $id)->delete();
 			}
 		}
@@ -69,6 +69,7 @@ class Admin_Content_Controller extends Base_Controller {
 					$content->name = $name;
 					$content->extension = File::extension($name);
 					$content->save();
+					File::move($GLOBALS['laravel_paths']['base'].'files'.DS.$name, $GLOBALS['laravel_paths']['base'].'files'.DS.$content->id);
 				} else {
 					return Response::json(array('success' => false, 'message' => Lang::line('messages.ng_upload', array('attribute' => $name))->get()));
 				}

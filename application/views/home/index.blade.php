@@ -20,7 +20,7 @@
         <article id="d_box">
             <div class=" inner">
                 <div class="pdf">
-                  <a href="{{ url($content->url) }}" target="_blank">
+                  <a href="{{ url($content->url) }}">
                     <!-- <img src="{{asset('images/img_pdf.png')}}" alt="pdf"> -->
                     @if ( $content->extension == 'xlsx' || $content->extension == 'xlsm' || $content->extension == 'xls' )
                       <img src="{{asset('images/if_Excel.png')}}" alt="xls">
@@ -42,7 +42,7 @@
                     <p class="pdf_name">ファイル形式：{{ $content->extension }}ファイル</p>
                     <p class="caption">{{ $content->description }}</p>
                 </div>
-                <div class="d_buttom"><a href="{{ url($content->url) }}" target="_blank"><img src="{{asset('images/d_buttom.png')}}" alt="ダウンロード" lang="ダウンロード"></a></div>
+                <div class="d_buttom"><a href="{{ url($content->url) }}"><img src="{{asset('images/d_buttom.png')}}" alt="ダウンロード" lang="ダウンロード"></a></div>
             </div>
         </article>
         @endforeach
