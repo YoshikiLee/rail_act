@@ -23,17 +23,17 @@
                   <a href="{{ url($content->url) }}" target="_blank">
                     <!-- <img src="{{asset('images/img_pdf.png')}}" alt="pdf"> -->
                     @if ( $content->extension == 'xlsx' || $content->extension == 'xlsm' || $content->extension == 'xls' )
-                      <i class="fa fa-file-excel-o fa-large"></i>
+                      <img src="{{asset('images/if_Excel.png')}}" alt="xls">
                     @elseif ( $content->extension == 'pdf' )
-                      <i class="fa fa-file-pdf-o fa-large"></i>
+                      <img src="{{asset('images/if_pdf.png')}}" alt="pdf">
                     @elseif ( $content->extension == 'pptx' || $content->extension == 'pptm' || $content->extension == 'ppt' )
-                      <i class="fa fa-file-powerpoint-o fa-large"></i>
+                      <img src="{{asset('images/if_PowerPoint.png')}}" alt="ppt">
                     @elseif ( $content->extension == 'jpg' || $content->extension == 'jpeg' )
-                      <i class="fa fa-file-image-o fa-large"></i>
+                      <img src="{{asset('images/if_image-jpeg.png')}}" alt="jpg">
                     @elseif ( $content->extension == 'docx' || $content->extension == 'docm' || $content->extension == 'doc' )
-                      <i class="fa fa-file-word-o fa-large"></i>
+                      <img src="{{asset('images/if_Word.png')}}" alt="doc">
                     @else
-                      <i class="fa fa-file-o fa-large"></i>
+                      <img src="{{asset('images/if_Document.png')}}" alt="txt">
                     @endif
                   </a>
               </div>
