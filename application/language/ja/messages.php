@@ -19,18 +19,19 @@ return array(
     'logo_alt' => '鉄道ACT研究会 - 鉄道建設改良技術の向上を目指して -',
 
     'login_id' => '会員ＩＤ',
-    'login_id_admin' => 'ＩＤ',
+    'login_id_admin' => '管理者ＩＤ',
     'login_password' => 'パスワード',
     'login_button' => 'ログイン',
 
     'login_title' => 'ログイン',
 
-    'kanri_link' => '→ 管理',
+    'kanri_link' => '管理',
     'kanri_title' => 'メンバー、コンテンツ管理',
 
     'member_title' => 'パスワード変更',
     'member_list_title' => 'ユーザ一覧',
-    'member_name' => 'ユーザ名',
+    'member_name' => '会員ＩＤ',
+    'admin_name' => '管理者ＩＤ',
     'member_type' => '区分',
     'member_password' => 'パスワード',
     'member_password_input' => 'パスワードを入力してください。',
@@ -84,11 +85,12 @@ return array(
     'upload' => 'アップロード',
 
     'logout' => 'ログアウト',
-    'logout_title' => '→ ログアウト',
+    'logout_title' => 'ログアウト',
     'logout_finish1' => 'ログアウトしました。',
     'logout_finish2' => ' ご利用ありがとうございました。',
 
     'download_title' => '会員様専用ダウンロードコンテンツ',
+    'download_admin_title' => '管理者専用ダウンロードコンテンツ',
     'download_sub_title' => '技術資料',
     'download_desciprtion' => 'アイコンをクリックすると、データをダウンロードしていただけます。',
 

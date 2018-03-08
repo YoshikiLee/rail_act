@@ -12,7 +12,7 @@
 <!-- InstanceBeginEditable name="Edit1" -->
 <div id="contents" class="clearfix">
     <section>
-        <h3>{{__('messages.download_title')}}</h3>
+        <h3>{{__('messages.download_admin_title')}}</h3>
         <p class="mb1">{{__('messages.download_desciprtion')}}</p>
         <h4 class="mb1">{{__('messages.download_sub_title')}}</h4>
         @foreach ($contents as $content)

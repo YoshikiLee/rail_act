@@ -29,7 +29,7 @@
                                       <table class="table table-bordered table-striped">
                                           <tbody>
                                               <tr>
-                                                  <th width="300">{{__('messages.member_name')}}</th>
+                                                  <th width="300">{{ $user->isadmin ? __('messages.admin_name') : __('messages.member_name') }}</th>
                                                   <td>{{ $user->username }}</td>
                                               </tr>
                                               <tr>

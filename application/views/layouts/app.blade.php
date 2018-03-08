@@ -31,7 +31,9 @@
     <div class="line"></div>
     <div class="logo">
       @if (Auth::check() && !Auth::user()->isadmin)
-      <div class="logout"><a href="{{ url('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">{{__('messages.logout_title')}}</a></div>
+      <div class="logout">
+        <a href="{{ url('logout') }}"onclick="event.preventDefault();document.getElementById('logout-form').submit();"><button type="button" style="font-size:1em;width:150px">{{__('messages.logout_title')}}</button></a>
+      </div>
       <form id="logout-form" action="{{ url('logout') }}" method="POST" style="display: none;">
         {{Form::token()}}
       </form>
