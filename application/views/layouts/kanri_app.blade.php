@@ -91,10 +91,10 @@
                           <a href="{{ url('admin/history') }}"><i class="fa fa-history fa-fw"></i> {{__('messages.history_title')}}</a>
                           <ul class="nav nav-second-level">
                               <li>
-                                  <a href="{{ url('admin/history') }}"> {{__('messages.history_title')}}</a>
+                                  <a href="{{ url('admin/history') }}"><i class="fa fa-history fa-fw"></i> {{__('messages.history_title')}}</a>
                               </li>
                               <li>
-                                  <a href="{{ url('admin/statistic') }}"> {{__('messages.history_statistic_title')}}</a>
+                                  <a href="{{ url('admin/statistic') }}"><i class="fa fa-list-alt fa-fw"></i> {{__('messages.history_statistic_title')}}</a>
                               </li>
                           </ul>
                       </li>
