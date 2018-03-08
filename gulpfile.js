@@ -15,7 +15,7 @@ gulp.task('front-minify-ccs', function() {
     .pipe(minifyCSS())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
     .pipe(concat('front.min.css'))
-    .pipe(gulp.dest('public/css'))
+    .pipe(gulp.dest('css'))
 });
 
 gulp.task('front-minify-js', function() {
@@ -26,7 +26,7 @@ gulp.task('front-minify-js', function() {
     ])
     .pipe(concat('front.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('public/js'))
+    .pipe(gulp.dest('js'))
 });
 
 gulp.task('kanri-less', function() {
@@ -48,7 +48,7 @@ gulp.task('kanri-minify-ccs', function() {
     .pipe(minifyCSS())
     .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 8', 'ie 9'))
     .pipe(concat('kanri.min.css'))
-    .pipe(gulp.dest('public/css'))
+    .pipe(gulp.dest('css'))
 });
 
 gulp.task('kanri-minify-js', function() {
@@ -64,7 +64,7 @@ gulp.task('kanri-minify-js', function() {
     ])
     .pipe(concat('kanri.min.js'))
     .pipe(uglify())
-    .pipe(gulp.dest('public/js'))
+    .pipe(gulp.dest('js'))
 });
 
 gulp.task('copy', function() {
@@ -95,11 +95,11 @@ gulp.task('copy', function() {
     gulp.src(['bower_components/vue/dist/vue.js', 'bower_components/vue/dist/vue.min.js'])
         .pipe(gulp.dest('resources/vendor/vue'))
     gulp.src(['resources/assets/images/*'])
-        .pipe(gulp.dest('public/images'))
+        .pipe(gulp.dest('images'))
     gulp.src(['resources/vendor/font-awesome/fonts/*'])
-        .pipe(gulp.dest('public/fonts'))
+        .pipe(gulp.dest('fonts'))
     gulp.src(['resources/vendor/bootstrap/fonts/*'])
-        .pipe(gulp.dest('public/fonts'))
+        .pipe(gulp.dest('fonts'))
     gulp.src(['bower_components/bootstrap3-dialog/dist/**/*'])
         .pipe(gulp.dest('resources/vendor/bootstrap3-dialog'))
 });

@@ -43,7 +43,7 @@ class Admin_Home_Controller extends Base_Controller {
 	public function get_download($filename)
 	{
 		$content = Content::where('name', '=', $filename)->first();
-		$file = path('public').'files'.DS.$filename;
+		$file = $GLOBALS['laravel_paths']['base'].'files'.DS.$filename;
 		if (isset($content) && file_exists($file)) {
 			$download = new Download;
 			$download->userid = Auth::user()->id;

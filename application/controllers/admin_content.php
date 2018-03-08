@@ -47,7 +47,7 @@ class Admin_Content_Controller extends Base_Controller {
 		foreach (Input::get('ids') as $id) {
 			$content = Content::find($id);
 			if (isset($content)) {
-				File::delete(path('public').'files'.DS.$content->name);
+				File::delete($GLOBALS['laravel_paths']['base'].'files'.DS.$content->name);
 				DB::table('contents')->where('id', '=', $id)->delete();
 			}
 		}
