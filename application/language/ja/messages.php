@@ -57,6 +57,7 @@ return array(
     'content_delete_finish' => 'ファイルを削除しました。',
     'content_upload_finish' => 'ファイルをアップロードしました。',
     'content_upload_no_file' => 'ファイルを選択してください。',
+    'content_upload_cancel_finish' => 'ファイルのアップロードがキャンセルしました。',
     'history_title' => 'ダウンロード履歴',
     'history_list_title' => 'ダウンロード履歴一覧',
     'history_list_no' => 'No',

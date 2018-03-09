@@ -54,6 +54,14 @@ class Admin_Content_Controller extends Base_Controller {
 		return Response::json(array('success' => true));
 	}
 
+	public function post_deleteUploadFile()
+	{
+		foreach (Input::get('names') as $name) {
+			File::delete($GLOBALS['laravel_paths']['base'].'files'.DS.$name);
+		}
+		return Response::json(array('success' => true));
+	}
+
 	public function post_upload()
 	{
 		$upload_handler = new UploadHandler();
