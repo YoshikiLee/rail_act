@@ -352,6 +352,34 @@ $(document).ready(function() {
 				$('#progress .progress-bar').css('width', 0);
 				$('#progress .progress-bar').html('');
 				$('#files').val('');
+				App.ajax({
+					url: '{{ url('admin/content/deleteUploadFile') }}',
+					data: {
+						'names':names
+					},
+					app_success: function (data, textStatus, jqXHR) {
+						if(data['success']){
+							BootstrapDialog.show({
+									type: BootstrapDialog.TYPE_PRIMARY,
+									title: '{{__('messages.success')}}',
+									message: '{{__('messages.content_upload_cancel_finish')}}'
+							});
+						} else {
+							BootstrapDialog.show({
+									type: BootstrapDialog.TYPE_DANGER,
+									title: '{{__('messages.error')}}',
+									message: data['message'],
+									buttons: [{
+											label: '{{__('messages.close')}}',
+											cssClass: 'btn-default',
+											action: function(dialogItself){
+													dialogItself.close();
+											}
+									}]
+							});
+						}
+					}
+        });
 		});
 
 		$("#fire").click(function(e) {
