@@ -315,9 +315,7 @@ $(document).ready(function() {
         dataType: 'json',
         done: function (e, data) {
             $.each(data.result.files, function (index, file) {
-                $('<p/>').text(file.name).appendTo('#files');
-								var txt = $("textarea#files");
-								txt.val( txt.val() + file.name + "\n");
+								$("textarea#files").append(file.name + "\n");
             });
         },
 				fail: function (e, data) {
