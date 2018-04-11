@@ -313,6 +313,24 @@ $(document).ready(function() {
     $('#fileupload').fileupload({
         url: '{{ url('admin/content/upload') }}',
         dataType: 'json',
+				add: function(e, data) {
+					if(data.originalFiles[0]['size'] > 8388608) {
+						BootstrapDialog.show({
+								type: BootstrapDialog.TYPE_DANGER,
+								title: '{{__('messages.error')}}',
+								message: '{{__('messages.content_upload_max_size')}}',
+								buttons: [{
+										label: '{{__('messages.close')}}',
+										cssClass: 'btn-default',
+										action: function(dialogItself){
+												dialogItself.close();
+										}
+								}]
+						});
+					} else {
+						data.submit();
+					}
+        },
         done: function (e, data) {
             $.each(data.result.files, function (index, file) {
 								$("textarea#files").append(file.name + "\n");
