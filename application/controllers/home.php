@@ -33,7 +33,7 @@ class Home_Controller extends Base_Controller {
 
 	public function get_index()
 	{
-		$contents = Content::where('isopen', '=', 0)->order_by('order', 'asc')->get();
+		$contents = Content::where('isopen', '=', 0)->order_by('order', 'asc')->order_by('updated_at', 'desc')->get();
 		foreach ($contents as $content) {
 				$content->url='download/'.$content->id;
 		}

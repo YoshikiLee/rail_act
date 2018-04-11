@@ -136,7 +136,7 @@ class UploadHandler
                 // Also note that the property 'no_cache' is not inherited, since it's not a manipulation.
                 '' => array(
                     // Automatically rotate images based on EXIF meta data:
-                    'auto_orient' => true
+                    'auto_orient' => false
                 ),
                 // You can add arrays to generate different versions.
                 // The name of the key is the name of the version (example: 'medium'). 

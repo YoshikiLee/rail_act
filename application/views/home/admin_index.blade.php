@@ -26,7 +26,7 @@
                       <img src="{{asset('images/if_pdf.png')}}" alt="pdf">
                     @elseif ( $content->extension == 'pptx' || $content->extension == 'pptm' || $content->extension == 'ppt' )
                       <img src="{{asset('images/if_PowerPoint.png')}}" alt="ppt">
-                    @elseif ( $content->extension == 'jpg' || $content->extension == 'jpeg' )
+                    @elseif ( $content->extension == 'jpg' || $content->extension == 'jpeg' || $content->extension == 'gif' )
                       <img src="{{asset('images/if_image-jpeg.png')}}" alt="jpg">
                     @elseif ( $content->extension == 'docx' || $content->extension == 'docm' || $content->extension == 'doc' )
                       <img src="{{asset('images/if_Word.png')}}" alt="doc">

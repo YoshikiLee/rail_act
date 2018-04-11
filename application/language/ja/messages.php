@@ -59,7 +59,6 @@ return array(
     'content_upload_no_file' => 'ファイルを選択してください。',
     'content_upload_cancel_finish' => 'ファイルのアップロードがキャンセルしました。',
     'content_upload_max_size' => 'アップロードファイルのサイズは8Mを超えました。',
-    'content_upload_min_size' => 'アップロードファイルのサイズは0KBです。',
     'history_title' => 'ダウンロード履歴',
     'history_list_title' => 'ダウンロード履歴一覧',
     'history_list_no' => 'No',
